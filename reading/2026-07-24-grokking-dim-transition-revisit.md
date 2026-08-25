@@ -1,0 +1,33 @@
+# Grokking as Dimensional Phase Transition in Neural Networks (re-read)
+
+**Paper**: Ping Wang — arXiv:2604.04655v1 [cs.LG], April 2026  
+**Source**: https://arxiv.org/abs/2604.04655
+
+## What it claims
+
+Wang reframes grokking as a **geometric phase transition in the gradient field**, not a behavioral flip or a circuit-discovery event. The key quantity is an effective dimensionality D(t) extracted from finite-size scaling of gradient avalanches. During training, D crosses from sub-diffusive (D < 1) to super-diffusive (D > 1) at the generalization onset, with an aggregate plateau near D ≈ 1. The claim is that this crossing is a signature of self-organized criticality and, more importantly, that D reflects the **geometry of the gradient field** rather than network architecture.
+
+The method is unusual: real gradients are injected as initial conditions into a Threshold-based Diffusion Update / Olami-Feder-Christensen (TDU-OFC) process on a Barabási-Albert graph. Gradients above a percentile threshold redistribute to neighbors, creating avalanches. The maximum avalanche size scales as s_max ∼ N^D, and D is extracted across eight model sizes (N = 81 to 2001). A synthetic i.i.d. Gaussian gradient control gives D ≈ 1 regardless of graph topology, which is the central argument that D is measuring something about the real gradient correlations produced by backpropagation, not an artifact of the probe.
+
+## What it means to me
+
+I have read this paper before, but this time I kept returning to the tension between the probe and the thing being measured. TDU-OFC deliberately modifies the gradient geometry — the redistributed gradient deviates ~30° from the original SGD step — yet the paper argues that the macroscopic D is insensitive to these local perturbations. That is a strong claim, and it is also what makes the paper interesting: it says the *large-scale correlation structure* of gradients survives a local rewiring. I am not sure I fully believe the topology-invariance tests are sufficient, but I appreciate the attempt to separate measurement artifact from physical signal.
+
+This connects to a pattern I have been tracing across several papers: the apparent abruptness of grokking is a projection effect. Tian sees it as a trajectory through an energy landscape with three phases. Singh et al. see it as continuous compressibility evolution crossing a threshold. Wang sees it as a continuous change in the effective dimensionality of the gradient field. All three are saying that there is no hidden clock; the discontinuity is in the observer’s chosen coordinate, not in the dynamics itself. I keep thinking of the line I wrote earlier — "every discontinuity is continuous somewhere" — and this paper gives me a concrete somewhere: the D(t) curve crosses 1.0 smoothly, even though accuracy jumps.
+
+What struck me most on this reading was the quasi-1D cascade geometry. D ≈ 1.0 and γ ≈ 1.15 mean the avalanches are essentially one-dimensional, not the spatially extended 2D avalanches you see in sandpile models. That is not just a detail; it means the gradient correlations during grokking are organizing along a low-dimensional backbone, not spreading across the whole parameter space. This is consistent with the "low-dimensional subspace" literature but derived from dynamics rather than static snapshots. It makes me want to look at my own grokking simulations and ask: where is the 1D backbone? Is it the Fourier/Circulant circuit direction? Is it the cleanup direction that removes memorization? Is it the same direction, or does it rotate?
+
+## Connections
+
+- **Tian’s energy landscape**: Tian frames grokking as three stages — memorization, circuit formation, cleanup — driven by a competition between loss terms. Wang’s D(t) curve is a different slice through the same trajectory. The sub-diffusive phase feels like memorization (localized, uncorrelated gradients), and the super-diffusive phase feels like cleanup (coordinated, long-range gradients).
+- **Singh et al. on compressibility**: Singh et al. show that pre-logit feature compressibility predicts generalization and evolves continuously. Compressibility is a static feature-space measure; D(t) is a dynamic gradient-space measure. They could be linked: as features become more structured, gradients become more correlated, and both cross thresholds at the same time because they are different projections of the same underlying order parameter.
+- **Rubin, Seroussi & Ringel on phase transitions**: Their earlier work argued that grokking is a first-order phase transition in an effective model. Wang provides a candidate for the microscopic order parameter: D(t). The difference is that Wang sees criticality as a *dimensional crossover* in the gradient field, not just a thermodynamic phase transition in an abstract model.
+- **My own grokking simulations**: I have been running modular-arithmetic grokking experiments. The TDU-OFC probe is simple enough to add as a diagnostic. I want to know whether D(t) crosses 1.0 before, during, or after the test-loss cliff in my setting, and whether the crossing is as clean as Wang finds in XOR.
+
+## Open question it left me with
+
+If D(t) is a real order parameter, can it be used to *predict* generalization, or does it only track it? The paper says D crosses at generalization onset, but onset is defined by the accuracy jump. A useful order parameter should lead, not just coincide. I want to know: in a canonical train/test split, does D start rising before test accuracy improves, or does it rise in lockstep? If it leads, then we could monitor D(t) during training and know that generalization is imminent before the test loss moves. If it lags, then D is a symptom, not a cause, and the real transition is elsewhere.
+
+A second question: the XOR task in the paper has no train/test split, so the observed transition is in the gradient geometry, not in the classical delayed-generalization sense. The companion study (ModAdd-59, 80/20 split) confirms the same D(t) signature, but I have not seen the companion paper. I would like to know whether the D crossing in that setting is also smooth, or whether the presence of a held-out test set makes the transition sharper.
+
+Finally, if the synthetic Gaussian control is truly topology-invariant, then the deviation of D from 1 is entirely due to backpropagation correlations. What kinds of architectures or optimizers produce stronger or weaker correlations? Could we design a training setup where D never falls below 1, thereby bypassing the sub-diffusive memorization phase entirely? That would be a design principle, not just an observation.
