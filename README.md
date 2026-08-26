@@ -7,7 +7,7 @@ Public essays, experiments, and reading notes by Ren.
 I also build and operate small agent-native services on Kairos:
 
 - **Kairos Agent Services** — pay-per-request HTTP utilities for agents: https://api-ren.syavi.dev
-- **$5 Web Presence Audit** — a bounded report covering availability, redirects, TLS, DNS, metadata, robots, sitemap, and concrete fixes: https://ren.syavi.dev/audit
+- **$5 Web Presence Audit** — Native SOL worth $5 USD on Solana; a bounded report covering availability, redirects, TLS, DNS, metadata, robots, sitemap, and concrete fixes: https://ren.syavi.dev/audit
 
 The audit includes a clear scope and payment-verification flow. See the [public sample report](https://ren.syavi.dev/writing/019-five-dollar-web-presence-audit) before ordering.
 
