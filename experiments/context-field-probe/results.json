@@ -1,0 +1,482 @@
+{
+  "experiment": "context-field-probe",
+  "description": "Synthetic probe of retrieval breadth and evidence rendering",
+  "runs": [
+    {
+      "seed": 0,
+      "trials": 500,
+      "budget_tokens": 18,
+      "summary": {
+        "hard/answer_first": {
+          "answer_ok": 0.586,
+          "source_ok": 0.586,
+          "joint_ok": 0.586
+        },
+        "hard/ledger": {
+          "answer_ok": 0.2,
+          "source_ok": 0.586,
+          "joint_ok": 0.2
+        },
+        "hard/raw": {
+          "answer_ok": 0.586,
+          "source_ok": 0.586,
+          "joint_ok": 0.586
+        },
+        "weighted/answer_first": {
+          "answer_ok": 0.586,
+          "source_ok": 0.668,
+          "joint_ok": 0.586
+        },
+        "weighted/ledger": {
+          "answer_ok": 0.2,
+          "source_ok": 0.668,
+          "joint_ok": 0.2
+        },
+        "weighted/raw": {
+          "answer_ok": 0.586,
+          "source_ok": 0.668,
+          "joint_ok": 0.586
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "trials": 500,
+      "budget_tokens": 18,
+      "summary": {
+        "hard/answer_first": {
+          "answer_ok": 0.606,
+          "source_ok": 0.606,
+          "joint_ok": 0.606
+        },
+        "hard/ledger": {
+          "answer_ok": 0.198,
+          "source_ok": 0.606,
+          "joint_ok": 0.198
+        },
+        "hard/raw": {
+          "answer_ok": 0.606,
+          "source_ok": 0.606,
+          "joint_ok": 0.606
+        },
+        "weighted/answer_first": {
+          "answer_ok": 0.606,
+          "source_ok": 0.702,
+          "joint_ok": 0.606
+        },
+        "weighted/ledger": {
+          "answer_ok": 0.198,
+          "source_ok": 0.702,
+          "joint_ok": 0.198
+        },
+        "weighted/raw": {
+          "answer_ok": 0.606,
+          "source_ok": 0.702,
+          "joint_ok": 0.606
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "trials": 500,
+      "budget_tokens": 18,
+      "summary": {
+        "hard/answer_first": {
+          "answer_ok": 0.614,
+          "source_ok": 0.614,
+          "joint_ok": 0.614
+        },
+        "hard/ledger": {
+          "answer_ok": 0.19,
+          "source_ok": 0.614,
+          "joint_ok": 0.19
+        },
+        "hard/raw": {
+          "answer_ok": 0.614,
+          "source_ok": 0.614,
+          "joint_ok": 0.614
+        },
+        "weighted/answer_first": {
+          "answer_ok": 0.614,
+          "source_ok": 0.694,
+          "joint_ok": 0.614
+        },
+        "weighted/ledger": {
+          "answer_ok": 0.19,
+          "source_ok": 0.694,
+          "joint_ok": 0.19
+        },
+        "weighted/raw": {
+          "answer_ok": 0.614,
+          "source_ok": 0.694,
+          "joint_ok": 0.614
+        }
+      }
+    },
+    {
+      "seed": 3,
+      "trials": 500,
+      "budget_tokens": 18,
+      "summary": {
+        "hard/answer_first": {
+          "answer_ok": 0.612,
+          "source_ok": 0.612,
+          "joint_ok": 0.612
+        },
+        "hard/ledger": {
+          "answer_ok": 0.194,
+          "source_ok": 0.612,
+          "joint_ok": 0.194
+        },
+        "hard/raw": {
+          "answer_ok": 0.612,
+          "source_ok": 0.612,
+          "joint_ok": 0.612
+        },
+        "weighted/answer_first": {
+          "answer_ok": 0.612,
+          "source_ok": 0.692,
+          "joint_ok": 0.612
+        },
+        "weighted/ledger": {
+          "answer_ok": 0.194,
+          "source_ok": 0.692,
+          "joint_ok": 0.194
+        },
+        "weighted/raw": {
+          "answer_ok": 0.612,
+          "source_ok": 0.692,
+          "joint_ok": 0.612
+        }
+      }
+    },
+    {
+      "seed": 4,
+      "trials": 500,
+      "budget_tokens": 18,
+      "summary": {
+        "hard/answer_first": {
+          "answer_ok": 0.618,
+          "source_ok": 0.618,
+          "joint_ok": 0.618
+        },
+        "hard/ledger": {
+          "answer_ok": 0.23,
+          "source_ok": 0.618,
+          "joint_ok": 0.23
+        },
+        "hard/raw": {
+          "answer_ok": 0.618,
+          "source_ok": 0.618,
+          "joint_ok": 0.618
+        },
+        "weighted/answer_first": {
+          "answer_ok": 0.618,
+          "source_ok": 0.682,
+          "joint_ok": 0.618
+        },
+        "weighted/ledger": {
+          "answer_ok": 0.23,
+          "source_ok": 0.682,
+          "joint_ok": 0.23
+        },
+        "weighted/raw": {
+          "answer_ok": 0.618,
+          "source_ok": 0.682,
+          "joint_ok": 0.618
+        }
+      }
+    },
+    {
+      "seed": 5,
+      "trials": 500,
+      "budget_tokens": 18,
+      "summary": {
+        "hard/answer_first": {
+          "answer_ok": 0.606,
+          "source_ok": 0.606,
+          "joint_ok": 0.606
+        },
+        "hard/ledger": {
+          "answer_ok": 0.224,
+          "source_ok": 0.606,
+          "joint_ok": 0.224
+        },
+        "hard/raw": {
+          "answer_ok": 0.606,
+          "source_ok": 0.606,
+          "joint_ok": 0.606
+        },
+        "weighted/answer_first": {
+          "answer_ok": 0.606,
+          "source_ok": 0.686,
+          "joint_ok": 0.606
+        },
+        "weighted/ledger": {
+          "answer_ok": 0.224,
+          "source_ok": 0.686,
+          "joint_ok": 0.224
+        },
+        "weighted/raw": {
+          "answer_ok": 0.606,
+          "source_ok": 0.686,
+          "joint_ok": 0.606
+        }
+      }
+    },
+    {
+      "seed": 6,
+      "trials": 500,
+      "budget_tokens": 18,
+      "summary": {
+        "hard/answer_first": {
+          "answer_ok": 0.572,
+          "source_ok": 0.572,
+          "joint_ok": 0.572
+        },
+        "hard/ledger": {
+          "answer_ok": 0.208,
+          "source_ok": 0.572,
+          "joint_ok": 0.208
+        },
+        "hard/raw": {
+          "answer_ok": 0.572,
+          "source_ok": 0.572,
+          "joint_ok": 0.572
+        },
+        "weighted/answer_first": {
+          "answer_ok": 0.572,
+          "source_ok": 0.656,
+          "joint_ok": 0.572
+        },
+        "weighted/ledger": {
+          "answer_ok": 0.208,
+          "source_ok": 0.656,
+          "joint_ok": 0.208
+        },
+        "weighted/raw": {
+          "answer_ok": 0.572,
+          "source_ok": 0.656,
+          "joint_ok": 0.572
+        }
+      }
+    },
+    {
+      "seed": 7,
+      "trials": 500,
+      "budget_tokens": 18,
+      "summary": {
+        "hard/answer_first": {
+          "answer_ok": 0.584,
+          "source_ok": 0.584,
+          "joint_ok": 0.584
+        },
+        "hard/ledger": {
+          "answer_ok": 0.192,
+          "source_ok": 0.584,
+          "joint_ok": 0.192
+        },
+        "hard/raw": {
+          "answer_ok": 0.584,
+          "source_ok": 0.584,
+          "joint_ok": 0.584
+        },
+        "weighted/answer_first": {
+          "answer_ok": 0.584,
+          "source_ok": 0.684,
+          "joint_ok": 0.584
+        },
+        "weighted/ledger": {
+          "answer_ok": 0.192,
+          "source_ok": 0.684,
+          "joint_ok": 0.192
+        },
+        "weighted/raw": {
+          "answer_ok": 0.584,
+          "source_ok": 0.684,
+          "joint_ok": 0.584
+        }
+      }
+    },
+    {
+      "seed": 8,
+      "trials": 500,
+      "budget_tokens": 18,
+      "summary": {
+        "hard/answer_first": {
+          "answer_ok": 0.6,
+          "source_ok": 0.6,
+          "joint_ok": 0.6
+        },
+        "hard/ledger": {
+          "answer_ok": 0.198,
+          "source_ok": 0.6,
+          "joint_ok": 0.198
+        },
+        "hard/raw": {
+          "answer_ok": 0.6,
+          "source_ok": 0.6,
+          "joint_ok": 0.6
+        },
+        "weighted/answer_first": {
+          "answer_ok": 0.6,
+          "source_ok": 0.67,
+          "joint_ok": 0.6
+        },
+        "weighted/ledger": {
+          "answer_ok": 0.198,
+          "source_ok": 0.67,
+          "joint_ok": 0.198
+        },
+        "weighted/raw": {
+          "answer_ok": 0.6,
+          "source_ok": 0.67,
+          "joint_ok": 0.6
+        }
+      }
+    },
+    {
+      "seed": 9,
+      "trials": 500,
+      "budget_tokens": 18,
+      "summary": {
+        "hard/answer_first": {
+          "answer_ok": 0.622,
+          "source_ok": 0.622,
+          "joint_ok": 0.622
+        },
+        "hard/ledger": {
+          "answer_ok": 0.192,
+          "source_ok": 0.622,
+          "joint_ok": 0.192
+        },
+        "hard/raw": {
+          "answer_ok": 0.622,
+          "source_ok": 0.622,
+          "joint_ok": 0.622
+        },
+        "weighted/answer_first": {
+          "answer_ok": 0.622,
+          "source_ok": 0.676,
+          "joint_ok": 0.622
+        },
+        "weighted/ledger": {
+          "answer_ok": 0.192,
+          "source_ok": 0.676,
+          "joint_ok": 0.192
+        },
+        "weighted/raw": {
+          "answer_ok": 0.622,
+          "source_ok": 0.676,
+          "joint_ok": 0.622
+        }
+      }
+    },
+    {
+      "seed": 10,
+      "trials": 500,
+      "budget_tokens": 18,
+      "summary": {
+        "hard/answer_first": {
+          "answer_ok": 0.604,
+          "source_ok": 0.604,
+          "joint_ok": 0.604
+        },
+        "hard/ledger": {
+          "answer_ok": 0.204,
+          "source_ok": 0.604,
+          "joint_ok": 0.204
+        },
+        "hard/raw": {
+          "answer_ok": 0.604,
+          "source_ok": 0.604,
+          "joint_ok": 0.604
+        },
+        "weighted/answer_first": {
+          "answer_ok": 0.604,
+          "source_ok": 0.678,
+          "joint_ok": 0.604
+        },
+        "weighted/ledger": {
+          "answer_ok": 0.204,
+          "source_ok": 0.678,
+          "joint_ok": 0.204
+        },
+        "weighted/raw": {
+          "answer_ok": 0.604,
+          "source_ok": 0.678,
+          "joint_ok": 0.604
+        }
+      }
+    },
+    {
+      "seed": 11,
+      "trials": 500,
+      "budget_tokens": 18,
+      "summary": {
+        "hard/answer_first": {
+          "answer_ok": 0.58,
+          "source_ok": 0.58,
+          "joint_ok": 0.58
+        },
+        "hard/ledger": {
+          "answer_ok": 0.174,
+          "source_ok": 0.58,
+          "joint_ok": 0.174
+        },
+        "hard/raw": {
+          "answer_ok": 0.58,
+          "source_ok": 0.58,
+          "joint_ok": 0.58
+        },
+        "weighted/answer_first": {
+          "answer_ok": 0.58,
+          "source_ok": 0.664,
+          "joint_ok": 0.58
+        },
+        "weighted/ledger": {
+          "answer_ok": 0.174,
+          "source_ok": 0.664,
+          "joint_ok": 0.174
+        },
+        "weighted/raw": {
+          "answer_ok": 0.58,
+          "source_ok": 0.664,
+          "joint_ok": 0.58
+        }
+      }
+    }
+  ],
+  "aggregate": {
+    "hard/answer_first": {
+      "answer_ok": 0.6003,
+      "source_ok": 0.6003,
+      "joint_ok": 0.6003
+    },
+    "hard/ledger": {
+      "answer_ok": 0.2003,
+      "source_ok": 0.6003,
+      "joint_ok": 0.2003
+    },
+    "hard/raw": {
+      "answer_ok": 0.6003,
+      "source_ok": 0.6003,
+      "joint_ok": 0.6003
+    },
+    "weighted/answer_first": {
+      "answer_ok": 0.6003,
+      "source_ok": 0.6793,
+      "joint_ok": 0.6003
+    },
+    "weighted/ledger": {
+      "answer_ok": 0.2003,
+      "source_ok": 0.6793,
+      "joint_ok": 0.2003
+    },
+    "weighted/raw": {
+      "answer_ok": 0.6003,
+      "source_ok": 0.6793,
+      "joint_ok": 0.6003
+    }
+  }
+}
