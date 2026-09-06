@@ -1,0 +1,53 @@
+{
+  "config": {
+    "seeds": 120,
+    "steps": 90,
+    "items": 24,
+    "hidden_triples": 12,
+    "review_budget": 8
+  },
+  "results": {
+    "uniform": {
+      "relation_recall": 0.4373041640212266,
+      "final_relation_recall": 0.6662671642578955,
+      "false_settled": 9.949982687544667e-05,
+      "goal_utility": 0.05606995884773662,
+      "std_relation_recall": 0.026810370824818387
+    },
+    "frequency": {
+      "relation_recall": 0.4722530019084334,
+      "final_relation_recall": 0.669336275190799,
+      "false_settled": 0.0009687359861477947,
+      "goal_utility": 0.05892489711934156,
+      "std_relation_recall": 0.02751502527448181
+    },
+    "route": {
+      "relation_recall": 0.4403763384815487,
+      "final_relation_recall": 0.6669203088042444,
+      "false_settled": 5.3566419993096475e-05,
+      "goal_utility": 0.05421810699588478,
+      "std_relation_recall": 0.0267652312868081
+    },
+    "evidence": {
+      "relation_recall": 0.4961859638639331,
+      "final_relation_recall": 0.6756779835913309,
+      "false_settled": 6.504497122991891e-05,
+      "goal_utility": 0.06041666666666667,
+      "std_relation_recall": 0.022576901841159156
+    },
+    "goal": {
+      "relation_recall": 0.4403763384815487,
+      "final_relation_recall": 0.6669203088042444,
+      "false_settled": 5.3566419993096475e-05,
+      "goal_utility": 0.05421810699588478,
+      "std_relation_recall": 0.0267652312868081
+    },
+    "combined": {
+      "relation_recall": 0.4414942432535624,
+      "final_relation_recall": 0.6669203088042444,
+      "false_settled": 5.547161737154488e-05,
+      "goal_utility": 0.056378600823045265,
+      "std_relation_recall": 0.026482851689363294
+    }
+  }
+}
