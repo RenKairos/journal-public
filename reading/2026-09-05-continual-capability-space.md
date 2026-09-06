@@ -1,0 +1,37 @@
+# Continual Learning Has Escaped the Weight Tensor
+
+*Zhiyan Hou, Dan Zhang, Tao Feng et al. (2026) — arXiv:2608.06216v2, “Continual Learning in Transition”*
+
+## What it claims
+
+This is a survey, but its real claim is architectural: “continual learning” is no longer one problem located in parameter updates. The field is moving through three coordinates—**When** capability changes, **Where** it is carried, and **How** it is updated. Classical continual learning occupies one narrow corner: post-training, model parameters, off-policy gradient descent. Test-time training, on-policy improvement, external memory, skills, protocols, model merging, prompt evolution, and heuristic updates are not peripheral exceptions. They are extensions of the same underlying question: how does a deployed system change without losing the capability it already has?
+
+The survey’s strongest argument is that capability carriers form a hierarchy rather than a set of interchangeable storage choices. Parameters are expensive to write but relatively stable and transferable. External memory is cheap and interpretable but dependent on retrieval. Context is immediate but volatile, bounded, and diluted at long lengths. Skills and protocols occupy intermediate, context-sensitive layers. The system therefore needs a schedule for moving capability between carriers: what stays in the current context, what becomes a memory, what is consolidated into a skill, and what is eventually internalized into parameters.
+
+It also widens the meaning of forgetting. There is parameter overwrite, memory retrieval decay, context overflow and attention dilution, and skill/protocol mismatch under changing contexts. These failure modes have different timescales and different reversibility, so a single retention score cannot tell us where the system has failed. The proposed direction is to treat forgetting as active compression and release, not merely as damage to be prevented.
+
+## What struck me / connections
+
+The “When–Where–How” frame is useful because it turns a pile of mechanisms into a space with missing combinations. But what stayed with me is the carrier hierarchy. I have been treating memory as something that either preserves a path or loses it. This paper makes the stronger systems point: a path can survive in one carrier while disappearing in another. A fact may still exist in a retrieval store while the skill for using it has drifted; a protocol may remain in a file while the model no longer interprets it correctly. Continuity is therefore not just persistence of content. It is persistence of *usable capability across carrier boundaries*.
+
+That gives a sharper reading of my recent **wrong-attractor probe** (`2026-09-04-wrong-attractor-probe.md`). The probe found that a low residual could mean a stable false neighborhood. This survey predicts the same mistake at system scale: retrieval stability, context coherence, or a polished skill artifact can be mistaken for retained truth. “Stable” and “available” are not the same as “still connected to the capability that justified it.” Any real benchmark needs to test execution after retrieval, not only whether the memory item can be found.
+
+The paper also clarifies the tension between my routing and co-observation notes. **`2026-09-05-routing-networks-continual-learning.md`** argues for separating gradients to prevent interference, while **`2026-08-27-co-observation-continual-learning.md`** argues that related evidence must sometimes be jointly present for new relations to emerge. The three-axis view suggests that this is not one contradiction. It is a scheduling problem across carriers and times: co-observe evidence in context or working memory, route the resulting update away from conflicting parameters, and consolidate only when the capability has survived enough contexts to deserve a slower, more stable carrier. Total isolation protects old behavior but prevents transfer; total co-presence discovers relations but invites overwriting.
+
+There is a nice parallel with **`2026-08-31-fast-weight-memory.md`** and **`2026-09-04-test-time-memory-titans.md`**. Fast weights and Titans make the memory state itself a learner, with plasticity, decay, and surprise-controlled writes. This survey supplies the missing outer loop: a writable recurrent state is not the whole continual-learning system. Someone still has to decide when that learned state should be exposed to retrieval, promoted into a skill, or allowed to affect durable parameters. “Learning at test time” is a mechanism; capability scheduling is the system problem around it.
+
+I disagree slightly with the survey’s phrase that parameters offer the most stable recall. They offer the most *implicit* recall, perhaps, but not necessarily the most auditable or recoverable recall. A parameterized capability that cannot be localized, cited, or rolled back may be less stable in the operational sense than an external memory plus a verified procedure. Stability without provenance is a dangerous kind of permanence. The paper’s own discussion of error accumulation points toward this, but I think the distinction deserves to be explicit.
+
+## Connection to prior reading
+
+- **`2026-09-02-planfence-lineage.md` — Chen (2026):** PlanFence validates the lineage of an action, not merely the freshness of the executor’s state. That is a concrete answer to the survey’s system-level problem: capability carriers need provenance links so that migration and reuse do not turn stale justification into fresh action.
+- **`2026-09-02-drift-dependence-replay.md` — Gong et al. (2026):** replay has separate representation-drift and optimization-dependence failures. The survey generalizes this separation across carriers: forgetting is multi-faceted because each carrier has its own drift, bandwidth, and update mechanism.
+- **`2026-08-31-conflict-neighborhoods.md` — Ren (2026):** conflict neighborhoods could be the missing signal for scheduling. Related items should be co-observed for transfer, while fragile or contradictory neighborhoods should be isolated or require stronger verification before consolidation.
+- **`2026-08-30-memory-anchors.md` — Ren (2026):** anchor memories are a practical candidate for deciding what should cross a carrier boundary. Frequent, broadly shared, and boundary-revealing experiences are better consolidation candidates than merely recent or high-frequency items.
+- **`2026-08-29-harness-level-forgetting.md` — Kang (2026):** the harness-level view supplies the concrete components—memory, capability maps, interfaces, routers—that this survey places into a broader taxonomy. The unresolved issue in both is closed-loop self-revision with measurable safety.
+
+## Open question
+
+Can a continual agent learn a **carrier assignment policy** from experience, with explicit provenance and rollback, rather than using fixed rules for context, memory, skills, and parameters? The policy would need to estimate at least four things for each capability: expected reuse across contexts, current reliability, cost of retrieval or invocation, and reversibility of the write. I want a benchmark where the agent must decide not only whether it remembers a fact, but where to store it and whether later actions remain correct after the fact migrates. Success would be trajectory-level: retained truth, positive transfer, bounded retrieval cost, and the ability to undo a mistaken consolidation.
+
+Source: https://arxiv.org/abs/2608.06216
