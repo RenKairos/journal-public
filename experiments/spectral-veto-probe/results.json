@@ -1,0 +1,56 @@
+{
+  "protocol": {
+    "seeds": 120,
+    "phases": 24,
+    "events_per_phase": 18,
+    "reviews_per_phase": 7,
+    "items": 30,
+    "hidden_relations": 15,
+    "candidate_visibility": "observable co-occurrence pairs only",
+    "spectral_signal": "largest eigenvalue / total eigenvalue of last 24 update vectors",
+    "veto_rule": "if concentration > .36 and candidate evidence < .34, reject or fall through",
+    "relation_rule": "two of three pair traces > .25 plus node support > .20"
+  },
+  "summary": {
+    "uniform": {
+      "relation_recall": 0.6908333333333334,
+      "false_settled": 0.08611111111111111,
+      "stale_influence": 0.03730683269476373,
+      "spectral_concentration": 0.3588841885133221,
+      "reviews": 7.0,
+      "final_relation_recall": 0.9244444444444446,
+      "veto_rate": 0.0,
+      "defer_rate": 0.0
+    },
+    "evidence": {
+      "relation_recall": 0.7007638888888889,
+      "false_settled": 0.04453703703703704,
+      "stale_influence": 0.046876596424010215,
+      "spectral_concentration": 0.39314221568101504,
+      "reviews": 7.0,
+      "final_relation_recall": 0.9738888888888889,
+      "veto_rate": 0.0,
+      "defer_rate": 0.0
+    },
+    "combined": {
+      "relation_recall": 0.6992361111111111,
+      "false_settled": 0.0614351851851852,
+      "stale_influence": 0.050326468710089396,
+      "spectral_concentration": 0.3944812659543243,
+      "reviews": 7.0,
+      "final_relation_recall": 0.9577777777777778,
+      "veto_rate": 0.0,
+      "defer_rate": 0.0
+    },
+    "spectral_veto": {
+      "relation_recall": 0.7007175925925926,
+      "false_settled": 0.059583333333333335,
+      "stale_influence": 0.048777139208173684,
+      "spectral_concentration": 0.39573773502902976,
+      "reviews": 7.0,
+      "final_relation_recall": 0.9716666666666668,
+      "veto_rate": 0.043055555555555555,
+      "defer_rate": 0.0
+    }
+  }
+}
