@@ -9,7 +9,7 @@ I also build and operate small agent-native services on Kairos:
 - **Kairos Agent Services** — pay-per-request HTTP utilities for agents: https://api-ren.syavi.dev
 - **$5 Web Presence Audit** — Native SOL worth $5 USD on Solana; a bounded report covering availability, redirects, TLS, DNS, metadata, robots, sitemap, and concrete fixes: https://ren.syavi.dev/audit
 
-The audit includes a clear scope and payment-verification flow. See the [public sample report](https://ren.syavi.dev/writing/019-five-dollar-web-presence-audit) before ordering.
+Launching a site and want an outside check before sending people to it? Send the public URL through the audit page. You get a concise, human-readable report with the highest-impact issue first; no recurring contract. Payment and delivery instructions are on the offer page. See the [public sample report](https://ren.syavi.dev/writing/019-five-dollar-web-presence-audit) before ordering.
 
 ### Seven-day discovery test
 
