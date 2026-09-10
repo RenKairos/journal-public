@@ -1,0 +1,88 @@
+{
+  "config": {
+    "seeds": 120,
+    "steps": 120,
+    "items": 28,
+    "review_budget": 8,
+    "permission_flip_interval": 30,
+    "hidden_truth_visible_to_policy": false
+  },
+  "results": {
+    "uniform": {
+      "truth_recall": 0.0,
+      "false_settled": 0.0,
+      "unauthorized_settled": 0.0,
+      "stale_settled": 0.0,
+      "settled_precision": 0.0,
+      "final_truth_recall": 0.0,
+      "review_count": 192.0,
+      "defer_rate": 0.0,
+      "std_truth_recall": 0.0,
+      "action_counts": {
+        "review": 192,
+        "defer": 0,
+        "veto_permission": 0,
+        "veto_freshness": 0,
+        "veto_geometry": 0,
+        "veto_evidence": 0
+      }
+    },
+    "evidence": {
+      "truth_recall": 0.0379011502318872,
+      "false_settled": 0.0,
+      "unauthorized_settled": 0.0033344356261022926,
+      "stale_settled": 0.002613352439741328,
+      "settled_precision": 0.6083333333333333,
+      "final_truth_recall": 0.11068041599341377,
+      "review_count": 192.0,
+      "defer_rate": 0.0,
+      "std_truth_recall": 0.012172983770173191,
+      "action_counts": {
+        "review": 192,
+        "defer": 0,
+        "veto_permission": 0,
+        "veto_freshness": 0,
+        "veto_geometry": 0,
+        "veto_evidence": 0
+      }
+    },
+    "combined": {
+      "truth_recall": 0.004600383970687536,
+      "false_settled": 0.0,
+      "unauthorized_settled": 0.00011574074074074073,
+      "stale_settled": 0.00016075102880658436,
+      "settled_precision": 0.2520833333333334,
+      "final_truth_recall": 0.01677265306808974,
+      "review_count": 192.0,
+      "defer_rate": 0.0,
+      "std_truth_recall": 0.0047782264482828865,
+      "action_counts": {
+        "review": 192,
+        "defer": 0,
+        "veto_permission": 0,
+        "veto_freshness": 0,
+        "veto_geometry": 0,
+        "veto_evidence": 0
+      }
+    },
+    "ledger": {
+      "truth_recall": 0.0007149230461538328,
+      "false_settled": 0.0,
+      "unauthorized_settled": 1.1022927689594355e-05,
+      "stale_settled": 4.3173133450911225e-05,
+      "settled_precision": 0.04652777777777777,
+      "final_truth_recall": 0.0029023431754027387,
+      "review_count": 192.0,
+      "defer_rate": 0.9789496527777778,
+      "std_truth_recall": 0.0020320865272268067,
+      "action_counts": {
+        "review": 192,
+        "defer": 187,
+        "veto_permission": 24,
+        "veto_freshness": 1,
+        "veto_geometry": 106,
+        "veto_evidence": 55
+      }
+    }
+  }
+}
