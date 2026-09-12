@@ -1,0 +1,1189 @@
+{
+  "experiment": "counterfactual-quotient-audit",
+  "question": "Does activation similarity on a narrow support justify merging hidden units?",
+  "seeds": 40,
+  "summary": {
+    "baseline": {
+      "manifold": 0.9967583333333334,
+      "full": 0.9359999999999999
+    },
+    "correlation_merge": {
+      "manifold": 0.9955083333333332,
+      "full": 0.93505,
+      "disagreement_vs_baseline": {
+        "manifold": 0.00235,
+        "full": 0.006333333333333334
+      }
+    },
+    "random_merge": {
+      "manifold": 0.9919916666666666,
+      "full": 0.9282499999999999,
+      "disagreement_vs_baseline": {
+        "manifold": 0.006683333333333333,
+        "full": 0.024533333333333334
+      }
+    }
+  },
+  "runs": [
+    {
+      "seed": 0,
+      "top_correlations": [
+        0.9998528450885591,
+        0.9997777248606492,
+        0.9996676504975524,
+        0.999658384770026
+      ],
+      "baseline": {
+        "manifold": 0.999,
+        "full": 0.9796666666666667
+      },
+      "correlation_merge": {
+        "manifold": 0.9956666666666667,
+        "full": 0.9766666666666667,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0033333333333333335,
+          "full": 0.012333333333333333
+        }
+      },
+      "random_merge": {
+        "manifold": 0.991,
+        "full": 0.9723333333333334,
+        "disagreement_vs_baseline": {
+          "manifold": 0.01,
+          "full": 0.018
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "top_correlations": [
+        0.9998473079355078,
+        0.9997368133270839,
+        0.999682154302832,
+        0.9994611559732306
+      ],
+      "baseline": {
+        "manifold": 0.996,
+        "full": 0.926
+      },
+      "correlation_merge": {
+        "manifold": 0.9963333333333333,
+        "full": 0.925,
+        "disagreement_vs_baseline": {
+          "manifold": 0.001,
+          "full": 0.0036666666666666666
+        }
+      },
+      "random_merge": {
+        "manifold": 0.991,
+        "full": 0.894,
+        "disagreement_vs_baseline": {
+          "manifold": 0.008333333333333333,
+          "full": 0.032
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "top_correlations": [
+        0.9997608667245966,
+        0.999738608040682,
+        0.99956192626151,
+        0.9994105609012909
+      ],
+      "baseline": {
+        "manifold": 0.9983333333333333,
+        "full": 0.957
+      },
+      "correlation_merge": {
+        "manifold": 0.996,
+        "full": 0.959,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0023333333333333335,
+          "full": 0.004
+        }
+      },
+      "random_merge": {
+        "manifold": 0.9883333333333333,
+        "full": 0.9426666666666667,
+        "disagreement_vs_baseline": {
+          "manifold": 0.01,
+          "full": 0.026333333333333334
+        }
+      }
+    },
+    {
+      "seed": 3,
+      "top_correlations": [
+        0.9997544838387721,
+        0.9996189896188779,
+        0.9996145599399691,
+        0.9993177361303285
+      ],
+      "baseline": {
+        "manifold": 0.9986666666666667,
+        "full": 0.9593333333333334
+      },
+      "correlation_merge": {
+        "manifold": 0.9926666666666667,
+        "full": 0.9666666666666667,
+        "disagreement_vs_baseline": {
+          "manifold": 0.006,
+          "full": 0.013333333333333334
+        }
+      },
+      "random_merge": {
+        "manifold": 0.998,
+        "full": 0.9376666666666666,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0033333333333333335,
+          "full": 0.023
+        }
+      }
+    },
+    {
+      "seed": 4,
+      "top_correlations": [
+        0.9999637308441309,
+        0.999855607230399,
+        0.9998297621692471,
+        0.999803296506002
+      ],
+      "baseline": {
+        "manifold": 0.997,
+        "full": 0.966
+      },
+      "correlation_merge": {
+        "manifold": 0.9973333333333333,
+        "full": 0.9636666666666667,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0003333333333333333,
+          "full": 0.004333333333333333
+        }
+      },
+      "random_merge": {
+        "manifold": 0.9943333333333333,
+        "full": 0.9783333333333334,
+        "disagreement_vs_baseline": {
+          "manifold": 0.006666666666666667,
+          "full": 0.026333333333333334
+        }
+      }
+    },
+    {
+      "seed": 5,
+      "top_correlations": [
+        0.9999363114844474,
+        0.9999136380143513,
+        0.9998767756967233,
+        0.9997404966801479
+      ],
+      "baseline": {
+        "manifold": 0.9963333333333333,
+        "full": 0.9106666666666666
+      },
+      "correlation_merge": {
+        "manifold": 0.996,
+        "full": 0.909,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0023333333333333335,
+          "full": 0.0016666666666666668
+        }
+      },
+      "random_merge": {
+        "manifold": 0.995,
+        "full": 0.927,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0013333333333333333,
+          "full": 0.017
+        }
+      }
+    },
+    {
+      "seed": 6,
+      "top_correlations": [
+        0.9999425096780968,
+        0.9995635047462363,
+        0.9994754179659244,
+        0.9992121501036886
+      ],
+      "baseline": {
+        "manifold": 0.9953333333333333,
+        "full": 0.9036666666666666
+      },
+      "correlation_merge": {
+        "manifold": 0.994,
+        "full": 0.9,
+        "disagreement_vs_baseline": {
+          "manifold": 0.004666666666666667,
+          "full": 0.012333333333333333
+        }
+      },
+      "random_merge": {
+        "manifold": 0.9953333333333333,
+        "full": 0.9106666666666666,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0026666666666666666,
+          "full": 0.007666666666666666
+        }
+      }
+    },
+    {
+      "seed": 7,
+      "top_correlations": [
+        0.9999346490423332,
+        0.9999212051590216,
+        0.9997752271163114,
+        0.9997110569158999
+      ],
+      "baseline": {
+        "manifold": 0.999,
+        "full": 0.9586666666666667
+      },
+      "correlation_merge": {
+        "manifold": 0.999,
+        "full": 0.9553333333333334,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0006666666666666666,
+          "full": 0.005333333333333333
+        }
+      },
+      "random_merge": {
+        "manifold": 0.9963333333333333,
+        "full": 0.9686666666666667,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0033333333333333335,
+          "full": 0.05533333333333333
+        }
+      }
+    },
+    {
+      "seed": 8,
+      "top_correlations": [
+        0.9999226443058132,
+        0.9998748460359596,
+        0.9994818258756233,
+        0.9994616092849276
+      ],
+      "baseline": {
+        "manifold": 0.9936666666666667,
+        "full": 0.9536666666666667
+      },
+      "correlation_merge": {
+        "manifold": 0.9873333333333333,
+        "full": 0.9553333333333334,
+        "disagreement_vs_baseline": {
+          "manifold": 0.006333333333333333,
+          "full": 0.006333333333333333
+        }
+      },
+      "random_merge": {
+        "manifold": 0.988,
+        "full": 0.9866666666666667,
+        "disagreement_vs_baseline": {
+          "manifold": 0.005666666666666667,
+          "full": 0.043666666666666666
+        }
+      }
+    },
+    {
+      "seed": 9,
+      "top_correlations": [
+        0.9998790275245245,
+        0.9998410161587843,
+        0.9998364442809279,
+        0.9996551198663696
+      ],
+      "baseline": {
+        "manifold": 0.9936666666666667,
+        "full": 0.9433333333333334
+      },
+      "correlation_merge": {
+        "manifold": 0.995,
+        "full": 0.9453333333333334,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0013333333333333333,
+          "full": 0.002
+        }
+      },
+      "random_merge": {
+        "manifold": 0.9926666666666667,
+        "full": 0.9323333333333333,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0023333333333333335,
+          "full": 0.011666666666666667
+        }
+      }
+    },
+    {
+      "seed": 10,
+      "top_correlations": [
+        0.9999552600696915,
+        0.9997086282088341,
+        0.9996841733411641,
+        0.9993108472990017
+      ],
+      "baseline": {
+        "manifold": 0.9926666666666667,
+        "full": 0.9043333333333333
+      },
+      "correlation_merge": {
+        "manifold": 0.9916666666666667,
+        "full": 0.9013333333333333,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0016666666666666668,
+          "full": 0.004333333333333333
+        }
+      },
+      "random_merge": {
+        "manifold": 0.9853333333333333,
+        "full": 0.956,
+        "disagreement_vs_baseline": {
+          "manifold": 0.009333333333333334,
+          "full": 0.05366666666666667
+        }
+      }
+    },
+    {
+      "seed": 11,
+      "top_correlations": [
+        0.9998167243176965,
+        0.9994795664591589,
+        0.9992642926385934,
+        0.9991123679363998
+      ],
+      "baseline": {
+        "manifold": 0.9993333333333333,
+        "full": 0.967
+      },
+      "correlation_merge": {
+        "manifold": 0.996,
+        "full": 0.97,
+        "disagreement_vs_baseline": {
+          "manifold": 0.004666666666666667,
+          "full": 0.008333333333333333
+        }
+      },
+      "random_merge": {
+        "manifold": 0.998,
+        "full": 0.9286666666666666,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0013333333333333333,
+          "full": 0.03833333333333333
+        }
+      }
+    },
+    {
+      "seed": 12,
+      "top_correlations": [
+        0.9998630201764114,
+        0.9998541602850549,
+        0.9998469074300234,
+        0.9998077223476818
+      ],
+      "baseline": {
+        "manifold": 0.994,
+        "full": 0.8913333333333333
+      },
+      "correlation_merge": {
+        "manifold": 0.9956666666666667,
+        "full": 0.894,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0016666666666666668,
+          "full": 0.0026666666666666666
+        }
+      },
+      "random_merge": {
+        "manifold": 0.9973333333333333,
+        "full": 0.8996666666666666,
+        "disagreement_vs_baseline": {
+          "manifold": 0.006,
+          "full": 0.012333333333333333
+        }
+      }
+    },
+    {
+      "seed": 13,
+      "top_correlations": [
+        0.9999957035059082,
+        0.9999716319549798,
+        0.9998880966037946,
+        0.9996270552965525
+      ],
+      "baseline": {
+        "manifold": 0.9983333333333333,
+        "full": 0.9756666666666667
+      },
+      "correlation_merge": {
+        "manifold": 0.998,
+        "full": 0.9683333333333334,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0023333333333333335,
+          "full": 0.008666666666666666
+        }
+      },
+      "random_merge": {
+        "manifold": 0.997,
+        "full": 0.9766666666666667,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0033333333333333335,
+          "full": 0.008333333333333333
+        }
+      }
+    },
+    {
+      "seed": 14,
+      "top_correlations": [
+        0.9999419435960764,
+        0.9999340124333711,
+        0.9998487312071116,
+        0.9998035241966132
+      ],
+      "baseline": {
+        "manifold": 0.9936666666666667,
+        "full": 0.8386666666666667
+      },
+      "correlation_merge": {
+        "manifold": 0.9906666666666667,
+        "full": 0.83,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0036666666666666666,
+          "full": 0.008666666666666666
+        }
+      },
+      "random_merge": {
+        "manifold": 0.9876666666666667,
+        "full": 0.8393333333333334,
+        "disagreement_vs_baseline": {
+          "manifold": 0.008,
+          "full": 0.006666666666666667
+        }
+      }
+    },
+    {
+      "seed": 15,
+      "top_correlations": [
+        0.9998872555125854,
+        0.9996691065351387,
+        0.9996577102420043,
+        0.9994787267932325
+      ],
+      "baseline": {
+        "manifold": 0.9993333333333333,
+        "full": 0.9873333333333333
+      },
+      "correlation_merge": {
+        "manifold": 0.9996666666666667,
+        "full": 0.984,
+        "disagreement_vs_baseline": {
+          "manifold": 0.001,
+          "full": 0.007333333333333333
+        }
+      },
+      "random_merge": {
+        "manifold": 0.986,
+        "full": 0.9623333333333334,
+        "disagreement_vs_baseline": {
+          "manifold": 0.014666666666666666,
+          "full": 0.027666666666666666
+        }
+      }
+    },
+    {
+      "seed": 16,
+      "top_correlations": [
+        0.9999428442451868,
+        0.9994813599274434,
+        0.9994461691206042,
+        0.9992700316125913
+      ],
+      "baseline": {
+        "manifold": 0.997,
+        "full": 0.969
+      },
+      "correlation_merge": {
+        "manifold": 0.996,
+        "full": 0.9726666666666667,
+        "disagreement_vs_baseline": {
+          "manifold": 0.001,
+          "full": 0.007666666666666666
+        }
+      },
+      "random_merge": {
+        "manifold": 0.9926666666666667,
+        "full": 0.9763333333333334,
+        "disagreement_vs_baseline": {
+          "manifold": 0.004333333333333333,
+          "full": 0.03133333333333333
+        }
+      }
+    },
+    {
+      "seed": 17,
+      "top_correlations": [
+        0.999985679070668,
+        0.9997858270453557,
+        0.9996440061693769,
+        0.9996154919302565
+      ],
+      "baseline": {
+        "manifold": 0.9933333333333333,
+        "full": 0.8883333333333333
+      },
+      "correlation_merge": {
+        "manifold": 0.9913333333333333,
+        "full": 0.871,
+        "disagreement_vs_baseline": {
+          "manifold": 0.007333333333333333,
+          "full": 0.018666666666666668
+        }
+      },
+      "random_merge": {
+        "manifold": 0.9926666666666667,
+        "full": 0.879,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0033333333333333335,
+          "full": 0.011333333333333334
+        }
+      }
+    },
+    {
+      "seed": 18,
+      "top_correlations": [
+        0.9999957459266667,
+        0.9998572801981234,
+        0.9997331286596781,
+        0.9997072572046715
+      ],
+      "baseline": {
+        "manifold": 0.998,
+        "full": 0.982
+      },
+      "correlation_merge": {
+        "manifold": 0.9943333333333333,
+        "full": 0.9703333333333334,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0036666666666666666,
+          "full": 0.013
+        }
+      },
+      "random_merge": {
+        "manifold": 0.9826666666666667,
+        "full": 0.9343333333333333,
+        "disagreement_vs_baseline": {
+          "manifold": 0.015333333333333332,
+          "full": 0.04833333333333333
+        }
+      }
+    },
+    {
+      "seed": 19,
+      "top_correlations": [
+        0.9999007116752106,
+        0.9998635874446042,
+        0.9998200898366089,
+        0.9997163375319619
+      ],
+      "baseline": {
+        "manifold": 0.9946666666666667,
+        "full": 0.8903333333333333
+      },
+      "correlation_merge": {
+        "manifold": 0.9943333333333333,
+        "full": 0.894,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0003333333333333333,
+          "full": 0.0036666666666666666
+        }
+      },
+      "random_merge": {
+        "manifold": 0.995,
+        "full": 0.8906666666666667,
+        "disagreement_vs_baseline": {
+          "manifold": 0.005666666666666667,
+          "full": 0.007
+        }
+      }
+    },
+    {
+      "seed": 20,
+      "top_correlations": [
+        0.999953453925464,
+        0.9998511626269241,
+        0.999822551157281,
+        0.9997918288203815
+      ],
+      "baseline": {
+        "manifold": 0.9966666666666667,
+        "full": 0.914
+      },
+      "correlation_merge": {
+        "manifold": 0.997,
+        "full": 0.9196666666666666,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0003333333333333333,
+          "full": 0.005666666666666667
+        }
+      },
+      "random_merge": {
+        "manifold": 0.989,
+        "full": 0.8443333333333334,
+        "disagreement_vs_baseline": {
+          "manifold": 0.009,
+          "full": 0.07033333333333333
+        }
+      }
+    },
+    {
+      "seed": 21,
+      "top_correlations": [
+        0.9999819164842457,
+        0.999882442689747,
+        0.9998485536262569,
+        0.9998106144623033
+      ],
+      "baseline": {
+        "manifold": 0.998,
+        "full": 0.971
+      },
+      "correlation_merge": {
+        "manifold": 0.998,
+        "full": 0.9706666666666667,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0,
+          "full": 0.0003333333333333333
+        }
+      },
+      "random_merge": {
+        "manifold": 0.9993333333333333,
+        "full": 0.9806666666666667,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0026666666666666666,
+          "full": 0.014333333333333333
+        }
+      }
+    },
+    {
+      "seed": 22,
+      "top_correlations": [
+        0.9999462512354138,
+        0.9998342101087135,
+        0.9997622169368668,
+        0.9997318486891767
+      ],
+      "baseline": {
+        "manifold": 0.9946666666666667,
+        "full": 0.8983333333333333
+      },
+      "correlation_merge": {
+        "manifold": 0.994,
+        "full": 0.9043333333333333,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0006666666666666666,
+          "full": 0.006666666666666667
+        }
+      },
+      "random_merge": {
+        "manifold": 0.995,
+        "full": 0.8976666666666666,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0003333333333333333,
+          "full": 0.0013333333333333333
+        }
+      }
+    },
+    {
+      "seed": 23,
+      "top_correlations": [
+        0.9999967835591667,
+        0.9999671403103947,
+        0.9997785720205854,
+        0.999627655203124
+      ],
+      "baseline": {
+        "manifold": 0.9946666666666667,
+        "full": 0.9586666666666667
+      },
+      "correlation_merge": {
+        "manifold": 0.994,
+        "full": 0.9596666666666667,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0006666666666666666,
+          "full": 0.0016666666666666668
+        }
+      },
+      "random_merge": {
+        "manifold": 0.9986666666666667,
+        "full": 0.9653333333333334,
+        "disagreement_vs_baseline": {
+          "manifold": 0.004666666666666667,
+          "full": 0.013333333333333334
+        }
+      }
+    },
+    {
+      "seed": 24,
+      "top_correlations": [
+        0.9999509212897449,
+        0.9998895349110473,
+        0.9997244918016572,
+        0.999593239857782
+      ],
+      "baseline": {
+        "manifold": 0.999,
+        "full": 0.9806666666666667
+      },
+      "correlation_merge": {
+        "manifold": 0.9986666666666667,
+        "full": 0.9793333333333333,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0003333333333333333,
+          "full": 0.006666666666666667
+        }
+      },
+      "random_merge": {
+        "manifold": 0.9766666666666667,
+        "full": 0.9273333333333333,
+        "disagreement_vs_baseline": {
+          "manifold": 0.022333333333333334,
+          "full": 0.059333333333333335
+        }
+      }
+    },
+    {
+      "seed": 25,
+      "top_correlations": [
+        0.999912743561433,
+        0.9998185331496365,
+        0.9997999266545888,
+        0.9996316791682656
+      ],
+      "baseline": {
+        "manifold": 0.9923333333333333,
+        "full": 0.9056666666666666
+      },
+      "correlation_merge": {
+        "manifold": 0.995,
+        "full": 0.9016666666666666,
+        "disagreement_vs_baseline": {
+          "manifold": 0.004,
+          "full": 0.006666666666666667
+        }
+      },
+      "random_merge": {
+        "manifold": 0.9923333333333333,
+        "full": 0.914,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0006666666666666666,
+          "full": 0.008333333333333333
+        }
+      }
+    },
+    {
+      "seed": 26,
+      "top_correlations": [
+        0.9999690858125468,
+        0.9996341686638546,
+        0.9995580672187657,
+        0.9992906421473181
+      ],
+      "baseline": {
+        "manifold": 0.9983333333333333,
+        "full": 0.9226666666666666
+      },
+      "correlation_merge": {
+        "manifold": 0.9983333333333333,
+        "full": 0.9223333333333333,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0,
+          "full": 0.0003333333333333333
+        }
+      },
+      "random_merge": {
+        "manifold": 0.9986666666666667,
+        "full": 0.9326666666666666,
+        "disagreement_vs_baseline": {
+          "manifold": 0.001,
+          "full": 0.01
+        }
+      }
+    },
+    {
+      "seed": 27,
+      "top_correlations": [
+        0.9997112261706542,
+        0.9996029989529691,
+        0.9995579702272601,
+        0.9993492146177143
+      ],
+      "baseline": {
+        "manifold": 0.9993333333333333,
+        "full": 0.9536666666666667
+      },
+      "correlation_merge": {
+        "manifold": 0.998,
+        "full": 0.9463333333333334,
+        "disagreement_vs_baseline": {
+          "manifold": 0.002,
+          "full": 0.008
+        }
+      },
+      "random_merge": {
+        "manifold": 0.9973333333333333,
+        "full": 0.9253333333333333,
+        "disagreement_vs_baseline": {
+          "manifold": 0.002,
+          "full": 0.06233333333333333
+        }
+      }
+    },
+    {
+      "seed": 28,
+      "top_correlations": [
+        0.9999744833574401,
+        0.9999040583788372,
+        0.9997359656817292,
+        0.9995712061274502
+      ],
+      "baseline": {
+        "manifold": 0.9946666666666667,
+        "full": 0.8866666666666667
+      },
+      "correlation_merge": {
+        "manifold": 0.992,
+        "full": 0.889,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0026666666666666666,
+          "full": 0.004333333333333333
+        }
+      },
+      "random_merge": {
+        "manifold": 0.9933333333333333,
+        "full": 0.8893333333333333,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0013333333333333333,
+          "full": 0.0026666666666666666
+        }
+      }
+    },
+    {
+      "seed": 29,
+      "top_correlations": [
+        0.9999453237374271,
+        0.999890897327663,
+        0.9997969135367698,
+        0.9991897149123495
+      ],
+      "baseline": {
+        "manifold": 0.9973333333333333,
+        "full": 0.9306666666666666
+      },
+      "correlation_merge": {
+        "manifold": 0.9973333333333333,
+        "full": 0.9256666666666666,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0013333333333333333,
+          "full": 0.005666666666666667
+        }
+      },
+      "random_merge": {
+        "manifold": 0.9833333333333333,
+        "full": 0.9113333333333333,
+        "disagreement_vs_baseline": {
+          "manifold": 0.017333333333333333,
+          "full": 0.032
+        }
+      }
+    },
+    {
+      "seed": 30,
+      "top_correlations": [
+        0.9999929271540978,
+        0.9998118143506673,
+        0.9997713551601566,
+        0.9996966784983115
+      ],
+      "baseline": {
+        "manifold": 0.9993333333333333,
+        "full": 0.978
+      },
+      "correlation_merge": {
+        "manifold": 0.997,
+        "full": 0.9736666666666667,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0023333333333333335,
+          "full": 0.007
+        }
+      },
+      "random_merge": {
+        "manifold": 0.975,
+        "full": 0.9343333333333333,
+        "disagreement_vs_baseline": {
+          "manifold": 0.024333333333333332,
+          "full": 0.04833333333333333
+        }
+      }
+    },
+    {
+      "seed": 31,
+      "top_correlations": [
+        0.9998924725820653,
+        0.999844841489435,
+        0.9997983155585495,
+        0.9997073387719534
+      ],
+      "baseline": {
+        "manifold": 0.997,
+        "full": 0.9293333333333333
+      },
+      "correlation_merge": {
+        "manifold": 0.9956666666666667,
+        "full": 0.931,
+        "disagreement_vs_baseline": {
+          "manifold": 0.004666666666666667,
+          "full": 0.007666666666666666
+        }
+      },
+      "random_merge": {
+        "manifold": 0.993,
+        "full": 0.9146666666666666,
+        "disagreement_vs_baseline": {
+          "manifold": 0.006,
+          "full": 0.015333333333333332
+        }
+      }
+    },
+    {
+      "seed": 32,
+      "top_correlations": [
+        0.9999050654429038,
+        0.9998541190907455,
+        0.9997856760882633,
+        0.9997529583406777
+      ],
+      "baseline": {
+        "manifold": 0.9983333333333333,
+        "full": 0.9353333333333333
+      },
+      "correlation_merge": {
+        "manifold": 0.9963333333333333,
+        "full": 0.9356666666666666,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0033333333333333335,
+          "full": 0.004333333333333333
+        }
+      },
+      "random_merge": {
+        "manifold": 0.9986666666666667,
+        "full": 0.9403333333333334,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0003333333333333333,
+          "full": 0.005
+        }
+      }
+    },
+    {
+      "seed": 33,
+      "top_correlations": [
+        0.9999181195242699,
+        0.9995822905129939,
+        0.9995481209207372,
+        0.9994404178897642
+      ],
+      "baseline": {
+        "manifold": 0.9973333333333333,
+        "full": 0.9276666666666666
+      },
+      "correlation_merge": {
+        "manifold": 0.995,
+        "full": 0.9333333333333333,
+        "disagreement_vs_baseline": {
+          "manifold": 0.003,
+          "full": 0.005666666666666667
+        }
+      },
+      "random_merge": {
+        "manifold": 0.997,
+        "full": 0.9176666666666666,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0003333333333333333,
+          "full": 0.01
+        }
+      }
+    },
+    {
+      "seed": 34,
+      "top_correlations": [
+        0.9999460432378171,
+        0.9998984725722122,
+        0.9993590374496725,
+        0.999261281554912
+      ],
+      "baseline": {
+        "manifold": 0.997,
+        "full": 0.9173333333333333
+      },
+      "correlation_merge": {
+        "manifold": 0.997,
+        "full": 0.9206666666666666,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0013333333333333333,
+          "full": 0.004666666666666667
+        }
+      },
+      "random_merge": {
+        "manifold": 0.9926666666666667,
+        "full": 0.9163333333333333,
+        "disagreement_vs_baseline": {
+          "manifold": 0.007666666666666666,
+          "full": 0.017
+        }
+      }
+    },
+    {
+      "seed": 35,
+      "top_correlations": [
+        0.9999896998739822,
+        0.9999407936086695,
+        0.9999256003825722,
+        0.9998904596227425
+      ],
+      "baseline": {
+        "manifold": 0.9983333333333333,
+        "full": 0.9306666666666666
+      },
+      "correlation_merge": {
+        "manifold": 0.9933333333333333,
+        "full": 0.9353333333333333,
+        "disagreement_vs_baseline": {
+          "manifold": 0.005,
+          "full": 0.009333333333333334
+        }
+      },
+      "random_merge": {
+        "manifold": 0.9843333333333333,
+        "full": 0.9026666666666666,
+        "disagreement_vs_baseline": {
+          "manifold": 0.017333333333333333,
+          "full": 0.034666666666666665
+        }
+      }
+    },
+    {
+      "seed": 36,
+      "top_correlations": [
+        0.999993987348271,
+        0.9999918012620745,
+        0.9999147034880533,
+        0.9994964338854356
+      ],
+      "baseline": {
+        "manifold": 0.9983333333333333,
+        "full": 0.9563333333333334
+      },
+      "correlation_merge": {
+        "manifold": 0.9993333333333333,
+        "full": 0.953,
+        "disagreement_vs_baseline": {
+          "manifold": 0.001,
+          "full": 0.0033333333333333335
+        }
+      },
+      "random_merge": {
+        "manifold": 0.9973333333333333,
+        "full": 0.9573333333333334,
+        "disagreement_vs_baseline": {
+          "manifold": 0.001,
+          "full": 0.0023333333333333335
+        }
+      }
+    },
+    {
+      "seed": 37,
+      "top_correlations": [
+        0.9999168128978343,
+        0.9998110990269968,
+        0.9997917171711184,
+        0.9996809152246667
+      ],
+      "baseline": {
+        "manifold": 0.9943333333333333,
+        "full": 0.868
+      },
+      "correlation_merge": {
+        "manifold": 0.9923333333333333,
+        "full": 0.863,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0026666666666666666,
+          "full": 0.007666666666666666
+        }
+      },
+      "random_merge": {
+        "manifold": 0.9916666666666667,
+        "full": 0.87,
+        "disagreement_vs_baseline": {
+          "manifold": 0.006666666666666667,
+          "full": 0.013333333333333334
+        }
+      }
+    },
+    {
+      "seed": 38,
+      "top_correlations": [
+        0.999970655580781,
+        0.9999497643536723,
+        0.9998179992307872,
+        0.999772017591933
+      ],
+      "baseline": {
+        "manifold": 0.9993333333333333,
+        "full": 0.9616666666666667
+      },
+      "correlation_merge": {
+        "manifold": 0.9963333333333333,
+        "full": 0.9633333333333334,
+        "disagreement_vs_baseline": {
+          "manifold": 0.003,
+          "full": 0.008333333333333333
+        }
+      },
+      "random_merge": {
+        "manifold": 0.9943333333333333,
+        "full": 0.9563333333333334,
+        "disagreement_vs_baseline": {
+          "manifold": 0.006333333333333333,
+          "full": 0.032
+        }
+      }
+    },
+    {
+      "seed": 39,
+      "top_correlations": [
+        0.9999736143749589,
+        0.9996465071279462,
+        0.9993419889763118,
+        0.9992715911624918
+      ],
+      "baseline": {
+        "manifold": 0.9986666666666667,
+        "full": 0.9616666666666667
+      },
+      "correlation_merge": {
+        "manifold": 0.9986666666666667,
+        "full": 0.9626666666666667,
+        "disagreement_vs_baseline": {
+          "manifold": 0.0,
+          "full": 0.001
+        }
+      },
+      "random_merge": {
+        "manifold": 0.9876666666666667,
+        "full": 0.939,
+        "disagreement_vs_baseline": {
+          "manifold": 0.011,
+          "full": 0.023333333333333334
+        }
+      }
+    }
+  ]
+}
