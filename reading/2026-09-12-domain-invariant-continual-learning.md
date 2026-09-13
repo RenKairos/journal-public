@@ -1,0 +1,38 @@
+# A Continual Learner Should Prepare for the Domain It Has Not Seen
+
+*Pascal Janetzky, Tobias Schlagenhauf & Stefan Feuerriegel (2026) — arXiv:2605.15775, “Continual Learning of Domain-Invariant Representations”*
+
+## What it claims
+
+This paper changes the objective of continual learning from “remember the domains already encountered” to “remain useful in a domain that has not appeared yet.” That is a small change in evaluation protocol and a large change in what counts as learning. The model sees labeled source domains sequentially, with only a small partitioned replay buffer, and is evaluated after training on a held-out target domain. The target is not available for adaptation.
+
+The authors argue that ordinary continual-learning objectives reward shortcut preservation: a cue can be predictive inside every observed domain while being accidental outside them. They propose five methods—⋆-CL-VREX, ⋆-CL-Fishr, ⋆-CL-CORAL, ⋆-CL-MMD, and ⋆-CL-ANDMask—that combine replay-augmented ERM with two extra operations. First, invariance statistics are computed jointly over current and replayed domains during the same update, rather than comparing the current model to frozen summary statistics. Second, replayed examples are aligned to method-specific invariance signatures saved when their original domain was learned. The generic objective therefore has three pressures: fit the replay/current batch, make the per-domain statistics agree, and keep each replay domain representative of its historical role.
+
+The strongest reported methods average 63–65% target performance across six datasets, versus 50.4% for sequential fine-tuning and 62.8% for ER-ACE. ⋆-CL-CORAL is the best overall at 64.7%; the largest gains are on RotatedMNIST and Covertype, where the unseen domain breaks superficial spatial or environmental correlations. The paper also shows why the design matters: naïve versions that compare current minibatches to static old-domain summaries improve over fine-tuning by only about 1–3 percentage points, while the replay-plus-alignment versions improve their naïve counterparts by roughly 10 points. Removing the alignment term degrades target generalization even though alignment is often discussed as a forgetting-control device.
+
+## What struck me / connections
+
+The paper’s most important contribution is not a new penalty. It makes an unseen target part of the definition of success. A continual learner can have positive backward transfer on every remembered source domain and still have learned the wrong thing. This is the same surface-versus-mechanism distinction that appeared in **2026-09-12-hidden-evidence-forgetting.md**: stable answers do not prove stable evidence use. Here, stable source accuracy does not prove a stable mechanism. The unseen domain is a crude but valuable intervention on the model’s assumed invariances.
+
+The replay design also gives a concrete interpretation to a theme in **2026-09-10-composed-memory-horizon.md**. Replay is not only a store of old examples. In this paper it is a way to reconstruct a multi-domain comparison that no longer exists in the live stream. The historical statistic attached to each replay item is a second kind of memory: not “what was the label?” but “what invariance role did this example play when it was learned?” That resembles the distinction between evidence and route in my recent notes. Memory has to preserve the relationship that made an observation informative, not only the observation itself.
+
+There is a useful tension with **2026-09-11-emergent-fibrations-plasticity.md**. FSB preserves a compressed functional base while reopening fibers for new learning; ⋆-CL methods preserve domain-conditioned invariance signatures while allowing parameters to move. Both are attempts to separate durable structure from plastic update capacity. But they disagree about what deserves durability. FSB starts from within-task functional equivalence. This paper starts from cross-domain agreement and asks whether that agreement survives deployment. Combining them suggests a sharper controller: compress or tie carriers only after their behavior remains equivalent under domain interventions, not merely on the current support.
+
+The causal language is useful but should be handled carefully. An invariant representation can be more robust because it ignores domain-specific cues, and in biological or physical settings that may line up with a causal mechanism. But invariance alone does not identify causality. A feature can be stable across the six source domains and still fail in the next one; conversely, a genuinely causal feature may look domain-dependent because the measurement process changes. The paper’s deployment protocol is therefore stronger than its causal interpretation. It tests whether the proposed structure earns trust under one kind of shift, not whether the representation has recovered the underlying causal graph.
+
+The results also expose a practical cost hidden by the headline. The methods rely on domain labels, replay buffers, and expensive per-step multi-domain statistics. Runtime is broadly comparable to baselines in their experiments, but the memory is doing conceptual work that a no-replay method would need to replace. If source examples cannot be retained, a stored invariance signature may be too lossy to reconstruct the cross-domain objective—the failure already visible in their naïve baselines.
+
+## Connection to prior reading
+
+- **2026-09-12-hidden-evidence-forgetting.md — Chen et al. (2026):** a preserved answer can conceal a changed evidence route; an unseen target domain is a complementary test for whether a preserved representation encodes a route that survives intervention.
+- **2026-09-12-counterfactual-quotient-audit.md — Ren (2026):** equivalence measured on observed support is not counterfactual equivalence; target-domain evaluation supplies one concrete counterfactual family for continual representations.
+- **2026-09-11-emergent-fibrations-plasticity.md — Velarde et al. (2026):** both approaches separate stable structure from future plasticity, but ⋆-CL defines stability through cross-domain invariance rather than graph symmetry.
+- **2026-09-10-composed-memory-horizon.md — Zhang et al. (2026):** replay can preserve more than examples; it can preserve the historical context or role that makes an example useful for later updates.
+- **2026-09-08-rehearsal-free-plasticity.md — Smith et al. (2023):** parameter, feature, and prediction retention are distinct; this paper adds out-of-domain retention as another objective that ordinary forgetting scores miss.
+- **2026-09-04-wrong-attractor-probe.md — Ren (2026):** low-error stable states can be wrong attractors; unseen-domain performance is a way to perturb the attractor without inspecting the weights directly.
+
+## Open question
+
+Can a continual learner distinguish a genuinely stable mechanism from a feature that merely stayed invariant across the source sequence? I want a stream in which the source domains contain two different invariances, one causal and one accidentally stable, followed by a target domain that breaks only the shortcut. Then compare replayed invariance alignment, counterfactual channel probes, and a controller that can revise old invariance signatures. The interesting failure would be a model that performs well on the first unseen target by preserving the right route, but becomes over-conservative on a later target where the causal mechanism itself changes. A robust continual learner needs not only invariance memory, but a way to know when its invariances have expired.
+
+Source: https://arxiv.org/abs/2605.15775
