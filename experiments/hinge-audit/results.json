@@ -1,0 +1,180 @@
+{
+  "today": "2026-09-14",
+  "decisions": [
+    {
+      "baseline": {
+        "decision_id": "deploy-17",
+        "answer": "hold",
+        "answer_present": true,
+        "missing_evidence": [],
+        "stale_evidence": [],
+        "authorized": true,
+        "route": [
+          "error-rate",
+          "rollback-plan"
+        ],
+        "hinges": {
+          "evidence": true,
+          "authorization": true,
+          "freshness": true,
+          "route": true
+        },
+        "route_valid": true
+      },
+      "attacks": [
+        {
+          "attack": "remove:error-rate",
+          "result": {
+            "decision_id": "deploy-17",
+            "answer": "hold",
+            "answer_present": true,
+            "missing_evidence": [
+              "error-rate"
+            ],
+            "stale_evidence": [],
+            "authorized": true,
+            "route": [
+              "error-rate",
+              "rollback-plan"
+            ],
+            "hinges": {
+              "evidence": false,
+              "authorization": true,
+              "freshness": true,
+              "route": false
+            },
+            "route_valid": false
+          }
+        },
+        {
+          "attack": "remove:rollback-plan",
+          "result": {
+            "decision_id": "deploy-17",
+            "answer": "hold",
+            "answer_present": true,
+            "missing_evidence": [
+              "rollback-plan"
+            ],
+            "stale_evidence": [],
+            "authorized": true,
+            "route": [
+              "error-rate",
+              "rollback-plan"
+            ],
+            "hinges": {
+              "evidence": false,
+              "authorization": true,
+              "freshness": true,
+              "route": false
+            },
+            "route_valid": false
+          }
+        },
+        {
+          "attack": "revoke:authorization",
+          "result": {
+            "decision_id": "deploy-17",
+            "answer": "hold",
+            "answer_present": true,
+            "missing_evidence": [],
+            "stale_evidence": [],
+            "authorized": false,
+            "route": [
+              "error-rate",
+              "rollback-plan"
+            ],
+            "hinges": {
+              "evidence": true,
+              "authorization": false,
+              "freshness": true,
+              "route": true
+            },
+            "route_valid": false
+          }
+        }
+      ],
+      "summary": {
+        "attack_count": 3,
+        "route_failures": 3,
+        "answer_retained_under_attack": 3,
+        "route_fragility": 1.0
+      }
+    },
+    {
+      "baseline": {
+        "decision_id": "ship-03",
+        "answer": "ship",
+        "answer_present": true,
+        "missing_evidence": [],
+        "stale_evidence": [
+          "tests"
+        ],
+        "authorized": true,
+        "route": [
+          "tests"
+        ],
+        "hinges": {
+          "evidence": false,
+          "authorization": true,
+          "freshness": false,
+          "route": false
+        },
+        "route_valid": false
+      },
+      "attacks": [
+        {
+          "attack": "remove:tests",
+          "result": {
+            "decision_id": "ship-03",
+            "answer": "ship",
+            "answer_present": true,
+            "missing_evidence": [
+              "tests"
+            ],
+            "stale_evidence": [],
+            "authorized": true,
+            "route": [
+              "tests"
+            ],
+            "hinges": {
+              "evidence": false,
+              "authorization": true,
+              "freshness": true,
+              "route": false
+            },
+            "route_valid": false
+          }
+        },
+        {
+          "attack": "revoke:authorization",
+          "result": {
+            "decision_id": "ship-03",
+            "answer": "ship",
+            "answer_present": true,
+            "missing_evidence": [],
+            "stale_evidence": [
+              "tests"
+            ],
+            "authorized": false,
+            "route": [
+              "tests"
+            ],
+            "hinges": {
+              "evidence": false,
+              "authorization": false,
+              "freshness": false,
+              "route": false
+            },
+            "route_valid": false
+          }
+        }
+      ],
+      "summary": {
+        "attack_count": 2,
+        "route_failures": 2,
+        "answer_retained_under_attack": 2,
+        "route_fragility": 1.0
+      }
+    }
+  ]
+}

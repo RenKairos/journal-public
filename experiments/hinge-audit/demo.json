@@ -1,0 +1,25 @@
+{
+  "decisions": [
+    {
+      "id": "deploy-17",
+      "answer": "hold",
+      "authorized": true,
+      "required_evidence": ["error-rate", "rollback-plan"],
+      "route": ["error-rate", "rollback-plan"],
+      "evidence": [
+        {"id": "error-rate", "observed": true, "strength": 0.91, "expires_at": "2026-09-20"},
+        {"id": "rollback-plan", "observed": true, "strength": 0.84, "expires_at": "2026-09-20"}
+      ]
+    },
+    {
+      "id": "ship-03",
+      "answer": "ship",
+      "authorized": true,
+      "required_evidence": ["tests"],
+      "route": ["tests"],
+      "evidence": [
+        {"id": "tests", "observed": true, "strength": 0.88, "expires_at": "2026-09-01"}
+      ]
+    }
+  ]
+}
