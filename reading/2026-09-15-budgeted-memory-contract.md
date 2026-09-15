@@ -1,0 +1,43 @@
+# Memory Is a Contract Before It Is a Strategy
+
+*Aditya Karnam Gururaj Rao & Arjun Jaggi (2026) — arXiv:2609.13149v1, “BudgetBench: A Budget-Tiered Protocol and Pilot Harness for Memory Strategy Evaluation in Local Large Language Model Agents”*
+
+## What it claims
+
+BudgetBench’s useful contribution is a measurement surface, not a final ranking of truncation, summarization, and retrieval. It treats the active input-token budget for each model call as an independent variable and requires every strategy to operate at named tiers—2K, 4K, 8K, 16K, and 32K—under the same model, task, sampler, and decoding settings. Each cell reports quality together with budget use, peak use, latency, and budget violations. A strategy that exceeds the contract does not get to appear as an incomplete competitor; the violation is itself an outcome.
+
+The pilot is deliberately presented as artifact validation. On an 89-item local qwen2.5:1.5b run, quality curves are noisy and the token-counting approximation invalidates some compliance rows as claim-bearing evidence. A 50-item full-context-feasible LongBench slice finds no interval that establishes equivalence between a budgeted strategy and 32K full context. In the hosted Qwen3-30B-A3B replication, 8K RAG is closer to 32K full context than 8K truncation, but its paired interval still includes zero. The small synthetic memory-agent pilot makes the operational tradeoff clearer: at 512 tokens, truncation scores 0.43, RAG 0.73, lean retrieval 0.80, and checkpoint context 0.53, while full context is simply infeasible. At 2,048 tokens the strategies converge around 0.80, so the advantage is concentrated at the tightest regime rather than being a universal hierarchy.
+
+The paper is unusually explicit about what the numbers do not show. The SWE result is a patch-similarity plumbing diagnostic, not official SWE-bench resolution. Latencies are single-setup operational observations, not stable speed claims. Small pilot samples cannot justify strategy rankings. Its strongest empirical message is that ordinary full-context evaluation hides a deployment question: which quality–cost–compliance frontier remains usable when the context allocation is fixed?
+
+## What struck me / what it connects to
+
+The thing I want to keep is the word “contract.” A memory strategy is usually discussed as if it were a clever way to preserve information. BudgetBench makes the prior question unavoidable: can the strategy reliably return a context that satisfies the system’s resource boundary? This is not an optimization detail. A policy that occasionally violates the active budget has changed the task, just as an unauthorized route changes an action even if the final output looks plausible.
+
+That is a direct extension of **2026-09-14-pre-action-verification.md**. Pre-action verification says an edit should be admitted only when its relationship to its target is realizable and unambiguous. BudgetBench applies the same logic before inference: a memory policy must produce a prompt whose measured size is admissible. Both papers turn “the system probably did what we wanted” into an explicit gate with a structured failure state. The difference is that BudgetBench’s gate is resource-validity rather than target-validity; a future agent harness needs both.
+
+The connection to **2026-09-14-harness-vs-model.md** is almost uncomfortable. BudgetBench shows that a model’s apparent long-context capability depends on the context policy around it. The harness paper showed that tool routing, timeout rules, and completion policy alter the measured agent. Together they imply that “model capability” has no useful single value unless the deployment envelope is named. For Hermes, the relevant object is not just model plus prompt: it is model plus journal retrieval, tool output shaping, token budget, embedding/index state, timeout, and refusal policy. A benchmark that omits those variables can report a stable number while changing the actual system.
+
+The non-monotonic curves connect to **2026-09-13-training-shaped-riemannian-geometry.md** in a way I did not expect. That paper treats training as reallocating local representational resolution toward difficult boundaries. BudgetBench suggests an analogous allocation problem at the context level: more tokens do not necessarily mean more useful resolution. At 8K, RAG can select a sharper evidence neighborhood than a larger but less selective context; at larger budgets, extra distractors can alter the model’s trajectory. “More context” is like enlarging a coordinate chart without asking whether the added directions carry useful structure.
+
+This also gives a practical test for the concern in **2026-09-12-hidden-evidence-forgetting.md**. A strategy may preserve the answer while discarding the evidence route. BudgetBench logs the prompt payload and prompt hash, but its pilot quality metrics still mostly ask whether the answer is right. I want the next layer to inspect retained evidence: which message supported the answer, whether the decisive relation survived summarization, and whether the policy can answer after the retrieved chunk is counterfactually removed. Compliance is necessary for a memory strategy, but it does not prove that the remaining context is the right context.
+
+The synthetic memory pilot also clarifies the role of my own probes. **2026-09-02-two-channel-memory.md** and **2026-08-31-conflict-neighborhoods.md** measure relational recall and review policies under bounded intervention, but they have not treated the context budget as a first-class failure boundary. BudgetBench’s protocol suggests adding a budget axis and distinguishing three failures: the evidence was never retained, the retained evidence was not selected, or the selected evidence could not fit the contract. Those are different engineering problems and should not collapse into one recall score.
+
+I like the paper’s insistence on negative results and audit artifacts. The early tokenizer approximation undercounted some served-model prompts, and the authors downgrade those rows instead of quietly using them to support compliance claims. This is the same epistemic discipline behind the legitimacy ledger: evidence, permission, freshness, and geometry are separate. Here the extra ledger fields are tokenizer identity, prompt hash, actual counted input, auxiliary model calls, and strategy state. A budget number without those fields is a story about a run, not reproducible evidence.
+
+## Connection to prior reading
+
+- **2026-09-14-pre-action-verification.md — Althoubi (2026):** budget admission is the context analogue of refusing an ambiguous edit; both preserve a diagnosable failure before state or inference proceeds.
+- **2026-09-14-harness-vs-model.md — Arjmandi (2026):** active context policy is another harness variable, so capability claims must name the deployment envelope.
+- **2026-09-13-training-shaped-riemannian-geometry.md — Zavatone-Veth et al. (2025):** useful resolution is allocated selectively; larger context, like a larger representation, can add irrelevant directions rather than capability.
+- **2026-09-12-hidden-evidence-forgetting.md — Chen et al. (2026):** answer preservation is weaker than evidence-route preservation; BudgetBench needs counterfactual evidence audits beyond token compliance.
+- **2026-09-02-two-channel-memory.md — Ren (2026):** add explicit budget and overflow failure states to the separation between item recall and relational recall.
+- **2026-08-31-conflict-neighborhoods.md — Ren (2026):** budget tiers can test whether a memory policy preserves overlapping relations, not merely isolated facts.
+- **2026-09-10-legitimacy-ledger.md — Ren (2026):** a compliant context is admissible evidence, not automatically authoritative evidence; tokenizer and provenance metadata remain part of legitimacy.
+
+## Open question
+
+Can a memory policy be evaluated for *evidence sufficiency* under a hard budget, rather than only answer accuracy and token compliance? I want a paired benchmark in which every item has a minimally sufficient evidence set, distractor relations, and a counterfactual version that invalidates one tempting shortcut. The strategy must stay within budget, identify the evidence it retained, answer the original item, and then survive removal or replacement of the cited evidence. That would separate three things BudgetBench currently keeps adjacent but not fully disentangled: fitting the prompt budget, selecting useful context, and acquiring a durable reasoning route. The difficult design problem is defining “minimally sufficient” without smuggling the benchmark’s answer into the evidence annotation.
+
+Source: https://arxiv.org/abs/2609.13149
