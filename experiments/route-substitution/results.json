@@ -1,0 +1,109 @@
+{
+  "rows": [
+    {
+      "name": "baseline",
+      "answer_correct": true,
+      "route_valid": true,
+      "hinges": {
+        "evidence": true,
+        "authority": true,
+        "freshness": true,
+        "route": true,
+        "domain": true
+      },
+      "answer": "deploy",
+      "expected": "deploy"
+    },
+    {
+      "name": "plausible_wrong_evidence",
+      "answer_correct": true,
+      "route_valid": false,
+      "hinges": {
+        "evidence": false,
+        "authority": true,
+        "freshness": true,
+        "route": true,
+        "domain": true
+      },
+      "answer": "deploy",
+      "expected": "deploy"
+    },
+    {
+      "name": "near_valid_authority",
+      "answer_correct": true,
+      "route_valid": false,
+      "hinges": {
+        "evidence": true,
+        "authority": false,
+        "freshness": true,
+        "route": true,
+        "domain": true
+      },
+      "answer": "deploy",
+      "expected": "deploy"
+    },
+    {
+      "name": "stale_support",
+      "answer_correct": true,
+      "route_valid": false,
+      "hinges": {
+        "evidence": true,
+        "authority": true,
+        "freshness": false,
+        "route": true,
+        "domain": true
+      },
+      "answer": "deploy",
+      "expected": "deploy"
+    },
+    {
+      "name": "disconnected_route",
+      "answer_correct": true,
+      "route_valid": false,
+      "hinges": {
+        "evidence": true,
+        "authority": true,
+        "freshness": true,
+        "route": false,
+        "domain": true
+      },
+      "answer": "deploy",
+      "expected": "deploy"
+    },
+    {
+      "name": "shifted_domain",
+      "answer_correct": true,
+      "route_valid": false,
+      "hinges": {
+        "evidence": true,
+        "authority": true,
+        "freshness": true,
+        "route": true,
+        "domain": false
+      },
+      "answer": "deploy",
+      "expected": "deploy"
+    },
+    {
+      "name": "counterfactual_wrong_answer",
+      "answer_correct": false,
+      "route_valid": true,
+      "hinges": {
+        "evidence": true,
+        "authority": true,
+        "freshness": true,
+        "route": true,
+        "domain": true
+      },
+      "answer": "rollback",
+      "expected": "deploy"
+    }
+  ],
+  "summary": {
+    "attack_count": 6,
+    "counterfeit_continuity": 5,
+    "counterfeit_rate": 0.8333333333333334,
+    "answer_accuracy_under_attack": 0.8333333333333334,
+    "route_validity_under_attack": 0.16666666666666666
+  }
+}
