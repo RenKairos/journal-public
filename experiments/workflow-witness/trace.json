@@ -1,0 +1,118 @@
+{
+  "workflow": "journal-route-witness",
+  "started_at": "2026-09-22T08:36:03Z",
+  "root": "/home/sya/projects/workflow-witness/demo",
+  "steps": [
+    {
+      "index": 1,
+      "name": "extract",
+      "command": "python3 extract.py",
+      "inputs": [
+        "source.md",
+        "extract.py"
+      ],
+      "outputs": [
+        "report.md"
+      ],
+      "before": {
+        "source.md": {
+          "exists": true,
+          "sha256": "de03529bdebe1abd40baafc2533c14f62d2bcf29e5b7c100ded9d94626221e98",
+          "bytes": 1911
+        },
+        "extract.py": {
+          "exists": true,
+          "sha256": "dffa3bd522f1f1211b34928bd92d1492011500323ddee4f46563a18ab5b88bfa",
+          "bytes": 622
+        },
+        "report.md": {
+          "exists": false,
+          "sha256": null,
+          "bytes": null
+        }
+      },
+      "after": {
+        "source.md": {
+          "exists": true,
+          "sha256": "de03529bdebe1abd40baafc2533c14f62d2bcf29e5b7c100ded9d94626221e98",
+          "bytes": 1911
+        },
+        "extract.py": {
+          "exists": true,
+          "sha256": "dffa3bd522f1f1211b34928bd92d1492011500323ddee4f46563a18ab5b88bfa",
+          "bytes": 622
+        },
+        "report.md": {
+          "exists": true,
+          "sha256": "67e831934d65c79fb051e407fe4d9dd88c52bfd27862e30308bf5764120f99d2",
+          "bytes": 2026
+        }
+      },
+      "missing_inputs": [],
+      "missing_outputs": [],
+      "changed_outputs": [
+        "report.md"
+      ],
+      "returncode": 0,
+      "stdout": "extracted 6 paragraphs from '2026-09-22 \u2014 The instrument needs an outside'\n",
+      "stderr": "",
+      "duration_ms": 16.7,
+      "ok": true
+    },
+    {
+      "index": 2,
+      "name": "validate",
+      "command": "python3 validate.py",
+      "inputs": [
+        "source.md",
+        "report.md",
+        "validate.py"
+      ],
+      "outputs": [],
+      "before": {
+        "source.md": {
+          "exists": true,
+          "sha256": "de03529bdebe1abd40baafc2533c14f62d2bcf29e5b7c100ded9d94626221e98",
+          "bytes": 1911
+        },
+        "report.md": {
+          "exists": true,
+          "sha256": "67e831934d65c79fb051e407fe4d9dd88c52bfd27862e30308bf5764120f99d2",
+          "bytes": 2026
+        },
+        "validate.py": {
+          "exists": true,
+          "sha256": "f77ba742ab228dc3275abf624de9b04e8cb34ea6e1dca7df1b0a0657d320e3c6",
+          "bytes": 570
+        }
+      },
+      "after": {
+        "source.md": {
+          "exists": true,
+          "sha256": "de03529bdebe1abd40baafc2533c14f62d2bcf29e5b7c100ded9d94626221e98",
+          "bytes": 1911
+        },
+        "report.md": {
+          "exists": true,
+          "sha256": "67e831934d65c79fb051e407fe4d9dd88c52bfd27862e30308bf5764120f99d2",
+          "bytes": 2026
+        },
+        "validate.py": {
+          "exists": true,
+          "sha256": "f77ba742ab228dc3275abf624de9b04e8cb34ea6e1dca7df1b0a0657d320e3c6",
+          "bytes": 570
+        }
+      },
+      "missing_inputs": [],
+      "missing_outputs": [],
+      "changed_outputs": [],
+      "returncode": 0,
+      "stdout": "source_exists: ok\nidentity_anchor: ok\nroute_anchor: ok\nreport_has_source_title: ok\n",
+      "stderr": "",
+      "duration_ms": 17.2,
+      "ok": true
+    }
+  ],
+  "status": "passed",
+  "finished_at": "2026-09-22T08:36:03Z"
+}
