@@ -6,7 +6,7 @@ records hashes at each boundary and treats validation failures as route failures
 not as ordinary command failures hidden by a successful final artifact.
 """
 from __future__ import annotations
-import argparse, hashlib, json, os, subprocess, sys, time
+import argparse, hashlib, json, os, re, shutil, subprocess, sys, time
 from pathlib import Path
 from typing import Any
 
@@ -33,7 +33,42 @@ def snapshot(root: Path, paths: list[str]) -> dict[str, dict[str, Any]]:
     return out
 
 
-def run(manifest_path: Path, out_path: Path) -> int:
+_SYSCALL_PATH = re.compile(r"(?:openat|open|newfstatat|statx|stat|lstat|access|unlink|mkdir|rename|chmod|execve)\([^,]*,?\s*\"((?:[^\"\\]|\\.)*)\"")
+
+
+def captured_paths(log: Path, root: Path) -> dict[str, list[str]]:
+    """Extract in-root file paths observed by strace, conservatively.
+
+    This is an observation layer, not a sandbox: syscall parsing is intentionally
+    incomplete and only reports paths that can be normalized under the workflow root.
+    """
+    seen: dict[str, set[str]] = {"read": set(), "write": set(), "other": set()}
+    root = root.resolve()
+    for line in log.read_text(errors="replace").splitlines():
+        match = _SYSCALL_PATH.search(line)
+        if not match:
+            continue
+        raw = bytes(match.group(1), "utf-8").decode("unicode_escape")
+        path = Path(raw)
+        if not path.is_absolute():
+            path = root / path
+        try:
+            rel = path.resolve().relative_to(root)
+        except ValueError:
+            continue
+        # Directory probes and failed import/path lookups are not file dependencies.
+        if not path.exists() or not path.is_file():
+            continue
+        rel_s = str(rel)
+        if "execve(" in line:
+            kind = "other"
+        else:
+            kind = "write" if any(op in line for op in ("O_WRONLY", "O_RDWR", "O_CREAT", "O_TRUNC", "unlink(", "rename(")) else "read"
+        seen[kind].add(rel_s)
+    return {key: sorted(value) for key, value in seen.items()}
+
+
+def run(manifest_path: Path, out_path: Path, capture: bool = False) -> int:
     manifest = json.loads(manifest_path.read_text())
     root = manifest_path.parent.resolve()
     steps = manifest.get("steps", [])
@@ -61,7 +96,13 @@ def run(manifest_path: Path, out_path: Path) -> int:
                 pass
         cmd = step["command"]
         started = time.time()
-        proc = subprocess.run(cmd, shell=True, cwd=root, text=True, capture_output=True,
+        syscall_log = root / f".witness-strace-{i}.log"
+        wrapped = cmd
+        if capture:
+            if not shutil.which("strace"):
+                raise SystemExit("--capture requires strace")
+            wrapped = f"strace -f -qq -e trace=file -o {subprocess.list2cmdline([str(syscall_log)])} sh -c {subprocess.list2cmdline([cmd])}"
+        proc = subprocess.run(wrapped, shell=True, cwd=root, text=True, capture_output=True,
                               env={**os.environ, "WITNESS_ROOT": str(root)})
         after = snapshot(root, declared)
         missing_outputs = [p for p in outputs if not (root / p).is_file()]
@@ -75,6 +116,12 @@ def run(manifest_path: Path, out_path: Path) -> int:
             "stderr": proc.stderr[-4000:], "duration_ms": round((time.time() - started) * 1000, 1),
             "ok": ok,
         }
+        if capture:
+            observed = captured_paths(syscall_log, root)
+            declared_set = set(declared)
+            record["observed_paths"] = observed
+            record["undeclared_in_root"] = sorted(set(observed["read"] + observed["write"]) - declared_set)
+            syscall_log.unlink(missing_ok=True)
         trace["steps"].append(record)
         if ok:
             prior_outputs.update(outputs)
@@ -96,8 +143,9 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("manifest", type=Path)
     ap.add_argument("--out", type=Path, default=Path("witness.json"))
+    ap.add_argument("--capture", action="store_true", help="capture in-root file syscalls with strace")
     args = ap.parse_args()
-    return run(args.manifest.resolve(), args.out.resolve())
+    return run(args.manifest.resolve(), args.out.resolve(), capture=args.capture)
 
 if __name__ == "__main__":
     raise SystemExit(main())

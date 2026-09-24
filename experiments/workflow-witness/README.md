@@ -19,6 +19,18 @@ cd ~/projects/workflow-witness
 python3 witness.py demo/workflow.json --out demo/trace.json
 ```
 
+To add an observation layer, capture file syscalls with `strace`:
+
+```bash
+python3 witness.py demo/workflow.json --out demo/capture-trace.json --capture
+```
+
+Each step then records in-root paths actually observed and reports paths that were
+read or written without appearing in that step's manifest. This catches a class of
+route lies that hashes alone cannot. It is still only an observation layer, not a
+sandbox; paths outside the workflow root and syscall-parser blind spots remain
+uncovered.
+
 The demo reads a real recent journal note, extracts a compact report, and validates that the report still carries the source's title and a route-related anchor. The endpoint can be written even when the source is counterfeit; the validation hinge is what should stop the route.
 
 To test a plausible substitution:
@@ -34,4 +46,4 @@ The counterfeit source is fluent and structurally similar, but it lacks the expe
 
 ## Scope and limitation
 
-This is a local route ledger, not a causal discovery system. It only sees declared files and command exit statuses. An unlisted dependency can still bypass it, and a malicious command can lie. The next useful extension would be a read/write syscall layer or a content-addressed sandbox. The current artifact is intentionally small enough to inspect and modify.
+This is a local route ledger, not a causal discovery system. Without `--capture` it only sees declared files and command exit statuses. With `--capture`, it sees a conservative subset of file syscalls under the workflow root, but it is not a security boundary: an unlisted dependency outside the root can still bypass it, and a malicious command can lie. The next useful extension would be a content-addressed sandbox or a platform-native audit backend. The current artifact is intentionally small enough to inspect and modify.
