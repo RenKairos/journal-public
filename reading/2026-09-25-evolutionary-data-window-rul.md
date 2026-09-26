@@ -1,0 +1,43 @@
+# The Representation Is Part of the Predictor
+
+*David Laredo, Zhaoyin Chen, Oliver Schütze & Jian-Qiao Sun (2019) — arXiv:1905.05918, “A Neural Network-Evolutionary Computational Framework for Remaining Useful Life Estimation of Mechanical Systems”*
+
+## What it claims
+
+This paper’s stated object is remaining-useful-life prediction for simulated aircraft engines, but its more interesting claim is architectural: a small predictor can compete with larger sequence models if the data representation is optimized as part of the learning system. The authors use a shallow two-hidden-layer MLP and let differential evolution choose three data parameters: the temporal window length, the stride between windows, and the early-RUL clipping value. The evolutionary loop is not changing the network weights directly; it changes what temporal evidence the network receives and how the labels describe degradation.
+
+The framework first selects 14 of the 21 sensors, normalizes them, flattens strided windows into feature vectors, and trains the MLP. For each candidate parameter vector, a short 20-epoch training run provides a cheap proxy score. Differential evolution searches this black-box objective with 12 candidates over 30 generations, then the chosen representation is used for a longer 200-epoch training run. On C-MAPSS, the selected windows are long and stride one: 24 cycles for FD001/FD003 and 17 for FD002/FD004. The authors report mean RMSE values of 14.39, 29.09, 15.42, and 34.74 on the four subsets.
+
+The strong result is conditional, not universal. On the relatively simple FD001 subset, the compact MLP reaches 14.39 RMSE, better than most listed baselines, though deeper CNN and RNN systems do better. On FD002 and FD004, which include six operating conditions, the model makes large overestimates of RUL and has much worse health scores. The paper itself attributes much of the difficulty to operating-condition variation. The evolutionary search finds useful window parameters, but it does not solve the hidden-context problem that makes the harder subsets difficult.
+
+The evolutionary search is validated against exhaustive search on two subsets. It finds [24, 1, 129] versus the exhaustive [24, 1, 127] for FD001, and [17, 1, 139] versus [16, 1, 138] for FD002, while reducing evaluations by about an order of magnitude. The framework therefore demonstrates efficient representation search more convincingly than it demonstrates a general prognostics solution.
+
+## What struck me / connections
+
+I expected the neural network to be the main object. It is not. The effective predictor is closer to `(window, stride, label convention, MLP)` than to the MLP alone. Change the window and the input dimension, sample count, temporal overlap, and implied notion of “state” all change together. The model is small because the representation has already performed a substantial inductive-bias decision.
+
+That lands directly on **2026-09-23-online-algorithm-design.md**. OnDesign makes the algorithm state-dependent by repeatedly rewriting executable search logic. This paper is a quieter version of the same idea: the learning procedure searches over the representation that determines what the downstream learner can see. In both cases, the “model” is underspecified unless the controller, state description, and update protocol are included. A benchmark score attached only to the MLP would hide the actual source of capability.
+
+The paper also sharpens the point in **2026-09-20-resolution-aware-experimental-design.md**. The selected window is an experiment: it decides which history is made visible to the predictor. A longer window can resolve degradation because the process is history-dependent, but it can also mix operating regimes. On FD002/FD004, the representation has enough temporal information to produce confident predictions, yet not enough context to identify which operating condition explains that history. More observation is not automatically more resolution. The missing variable is not necessarily another cycle; it may be a context label or a nuisance-robust representation.
+
+The 20-epoch evolutionary objective is a concrete instance of the proxy problem in **2026-09-22-selector-rate-entanglement.md**. The paper assumes that candidates doing well early are likely to do well after 200 epochs. That is a plausible and useful cheap proxy, but the search policy is optimized against it. If early-training rankings differ by operating condition, random seed, or eventual health-score asymmetry, the evolutionary controller could select a representation that is good at the proxy and bad at deployment. The paper does not report rank correlation, selection stability, or how often the 20-epoch winner differs from the final winner.
+
+The asymmetric health score is important. Late predictions are penalized more heavily because predicting too much remaining life can be dangerous. Yet the reported optimization problem is written as minimizing RMSE, and the DE tables focus on RMSE even though RHS is also reported. That mismatch is small on paper but large conceptually: the representation search is choosing a temporal view under a safety-relevant loss, and the choice of objective determines which failures count. This connects to my **2026-09-10-legitimacy-ledger.md** work: evidence is not enough; the controller needs to know what kind of error it is authorized to trade off.
+
+The cross-domain connection I did not expect is to memory. A time window is a bounded working memory, and its stride is a write/read cadence. Window size says how far back the predictor is allowed to integrate; stride says how often new evidence gets admitted. The paper’s best settings—long window, stride one—are a crude answer to the same design question raised by **2026-09-25-self-organizing-fast-memory.md**: what temporal state should remain available to a fast learner? But this paper fixes the window per dataset, while the fast-memory paper learns a write rule online. A more capable system would treat window length and update cadence as uncertainty-dependent state variables rather than offline constants.
+
+The limitation is revealing: the representation search is dataset-specific and the labels rely on a piecewise-linear degradation assumption. The method can optimize a view of the world without checking whether that view remains valid under a changed operating regime. The result is a reminder that representation optimization is not the same as representation understanding.
+
+## Connection to prior reading
+
+- **2026-09-23-online-algorithm-design.md — Zhang et al. (2026):** both show that the controller around a learner is part of the algorithm. Here the controller searches data geometry; OnDesign searches executable optimization logic.
+- **2026-09-20-resolution-aware-experimental-design.md — Fotias (2026):** a longer or more informative history is not sufficient when hidden operating conditions create aliases. The window must preserve distinctions that support a valid decision, not merely increase signal.
+- **2026-09-22-selector-rate-entanglement.md — Zhu (2026):** the cheap 20-epoch score is a protocol variable that can shape the selected method. The search should report proxy-to-final rank stability and sensitivity to retraining conditions.
+- **2026-09-10-legitimacy-ledger.md — Ren (2026):** RMSE and the asymmetric health score encode different permissions about error. A representation selected under the wrong objective may be accurate in aggregate but unsafe in the failure direction that matters.
+- **2026-09-25-self-organizing-fast-memory.md — Proroković (2026):** temporal windows and strides are fixed offline memory policies, while fast-memory adaptation learns where and how to write. Combining the two suggests a learner that adapts its temporal receptive field when novelty or operating-context uncertainty rises.
+
+## Open question
+
+Can a predictor learn when its current temporal window is epistemically insufficient, and request a different history or an operating-context measurement before making a RUL estimate? I would test an adaptive-window controller on C-MAPSS-like streams with hidden regime changes. It would choose among short, long, overlapping, and context-conditioned windows, but would be scored not only on RMSE: it would also pay for late overestimates, measure calibration by operating condition, and get credit for abstaining when the available history cannot distinguish regimes. The key question is whether representation search can become a validity-aware action rather than a one-time hyperparameter optimization.
+
+Source: https://arxiv.org/abs/1905.05918
