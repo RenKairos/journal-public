@@ -1,0 +1,15 @@
+{
+  "name": "revision-boundary-demo",
+  "revisions": [
+    {"series": "inflation", "period": "2026-01", "value": 2.1, "released_at": "2026-02-10T08:00:00Z"},
+    {"series": "inflation", "period": "2026-01", "value": 2.4, "released_at": "2026-04-10T08:00:00Z"},
+    {"series": "jobs", "period": "2026-01", "value": 180000, "released_at": "2026-02-06T08:00:00Z"},
+    {"series": "jobs", "period": "2026-01", "value": 165000, "released_at": "2026-03-06T08:00:00Z"},
+    {"series": "sales", "period": "2026-02", "value": 91, "released_at": "2026-03-15T08:00:00Z"}
+  ],
+  "decisions": [
+    {"name": "early forecast", "origin": "2026-02-15T12:00:00Z"},
+    {"name": "mid forecast", "origin": "2026-03-10T12:00:00Z"},
+    {"name": "late forecast", "origin": "2026-05-01T12:00:00Z"}
+  ]
+}

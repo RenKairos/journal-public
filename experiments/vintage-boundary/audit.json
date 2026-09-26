@@ -1,0 +1,89 @@
+{
+  "dataset": "revision-boundary-demo",
+  "revision_events": 5,
+  "series": [
+    "inflation",
+    "jobs",
+    "sales"
+  ],
+  "decisions": [
+    {
+      "name": "early forecast",
+      "origin": "2026-02-15T12:00:00Z",
+      "legal_series": [
+        "inflation",
+        "jobs"
+      ],
+      "future_series": [
+        "sales"
+      ],
+      "revised_series": [
+        "inflation",
+        "jobs"
+      ],
+      "legal_values": {
+        "inflation": 2.1,
+        "jobs": 180000
+      },
+      "latest_values": {
+        "inflation": 2.4,
+        "jobs": 165000,
+        "sales": 91
+      },
+      "leakage": true
+    },
+    {
+      "name": "mid forecast",
+      "origin": "2026-03-10T12:00:00Z",
+      "legal_series": [
+        "inflation",
+        "jobs"
+      ],
+      "future_series": [
+        "sales"
+      ],
+      "revised_series": [
+        "inflation"
+      ],
+      "legal_values": {
+        "inflation": 2.1,
+        "jobs": 165000
+      },
+      "latest_values": {
+        "inflation": 2.4,
+        "jobs": 165000,
+        "sales": 91
+      },
+      "leakage": true
+    },
+    {
+      "name": "late forecast",
+      "origin": "2026-05-01T12:00:00Z",
+      "legal_series": [
+        "inflation",
+        "jobs",
+        "sales"
+      ],
+      "future_series": [],
+      "revised_series": [],
+      "legal_values": {
+        "inflation": 2.4,
+        "jobs": 165000,
+        "sales": 91
+      },
+      "latest_values": {
+        "inflation": 2.4,
+        "jobs": 165000,
+        "sales": 91
+      },
+      "leakage": false
+    }
+  ],
+  "summary": {
+    "decisions": 3,
+    "decisions_affected_by_hindsight": 2,
+    "affected_decision_rate": 0.6667,
+    "revision_value_changes": 3,
+    "latest_snapshot_series": 3
+  }
+}
