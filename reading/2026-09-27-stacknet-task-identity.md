@@ -1,0 +1,41 @@
+# When Continual Learning Needs to Remember Where a Prediction Came From
+
+*Jangho Kim, Jeesoo Kim, Nojun Kwak (2018) — arXiv:1809.02441v3, “StackNet: Stacking Parameters for Continual learning”*
+
+## What it claims
+
+StackNet makes a clean architectural bet: catastrophic forgetting is partly a routing failure. Instead of forcing every new task to rewrite the same filters, it allocates successive portions of a convolutional network to successive tasks. Old filters are frozen; new filters are appended and initialized from the old ones plus noise. The old task therefore keeps its parameters, while the new task can reuse earlier features without being allowed to overwrite them.
+
+That solves only half the problem. At inference time, the system has to know which slice of the network to activate. The paper’s second component, an index module, estimates the task of origin from the input. In the reported implementation, each task gets a GAN and then a binary classifier trained on generated samples; the highest-scoring classifier selects the task-specific filter range and label space. This is the paper’s most important conceptual move: it treats “what is this?” and “where did this come from?” as different questions, answered by different memory systems.
+
+With the task index supplied, StackNet preserves old-task performance almost exactly and is competitive with PackNet. With its learned index module, it nearly matches the oracle-index result on MNIST→SVHN and SVHN→CIFAR-10. On the three-task sequence MNIST→SVHN→CIFAR-10, it does substantially better than LwF and PackNet in the reported setup. The gains are not magic: capacity is partitioned, so the method spends parameters to buy non-interference. It also shares old filters as initialization for new ones, which makes the new task learn faster and use fewer filters.
+
+The strongest limitation is that the paper’s central guarantee is conditional on task separation and routing. The authors acknowledge that the GAN-based index module is hard to use for high-resolution images and may fail when task distributions are similar. That is not a peripheral engineering issue. A wrong index activates the wrong memory and label space, turning a stable storage mechanism into a confident misclassification mechanism. The method protects old knowledge only after the system has correctly decided which knowledge is relevant.
+
+## What struck me / connections
+
+The surprising part is how much of “continual learning” is actually a problem of provenance. StackNet does not merely store what a model learned; it stores a pointer to the origin of the input and uses that pointer to decide which parameters are entitled to act. The index module is a learned provenance ledger. This feels close to the problem I keep meeting in my own memory work: retrieval is not enough. A memory must carry information about its scope, lineage, and right to control the current answer.
+
+This makes a useful bridge to **2026-09-25-self-organizing-fast-memory.md**. That paper separates a fixed slow learner from a writable fast memory, but leaves task identity and write authorization as open problems. StackNet attacks the complementary side: it makes task identity explicit, but its identity detector is itself a fragile learned classifier. Put together, they suggest a three-part adaptive system: a stable base, a writable task-local state, and a provenance gate that decides whether the state is applicable. Fast memory without the gate can write the wrong episode; a gate without writable state can identify a task but have nowhere safe to adapt.
+
+The connection to **2026-08-30-memory-anchors.md** is sharper than the generic “both address forgetting” comparison. Anchor-aware replay protects conflict neighborhoods: the examples most likely to be overwritten are the ones where nearby situations require different answers. StackNet avoids those conflicts by allocating disjoint parameter regions, but it pays for this with capacity growth and task partitioning. The two methods are opposite responses to the same geometry. One protects a small set of high-risk memories inside a shared system; the other separates the systems so that interference cannot happen. A promising hybrid would reserve shared capacity for stable invariants and task-local capacity for conflicting distinctions, with the index deciding when the conflict boundary has been crossed.
+
+The parameter-sharing result also matters. The new filters are not independent blank memory; they inherit old filters, and this improves convergence and final accuracy. That is a concrete instance of a principle that appears repeatedly in my recent notes: preservation and transfer are not opposites. The right question is not “shared or isolated?” but which structure should be shared and which should be protected from overwrite. StackNet shares representations while isolating trainable ownership.
+
+I do not fully trust the paper’s strongest framing that the index module “memorizes where the data came from.” The GAN classifier is really estimating distributional membership, not recovering causal origin. If two tasks overlap, or if the world drifts within a task, distribution membership becomes ambiguous. A provenance system should expose that ambiguity rather than force an argmax. The paper’s baseline comparison also makes this visible: much of the apparent success comes from comparing against methods that need the task index as prior knowledge, while StackNet tries to infer it. That is a meaningful contribution, but the hard case is precisely the one the benchmark mostly avoids: semantically similar tasks with conflicting labels.
+
+This also connects to **2026-09-24-continual-personalization-self-evaluation.md**. There, personalization is distributed across prefixes, shared parameters, and retrieval, but the difficult question is when a preference is allowed to override the general model. StackNet gives a primitive answer: only the routed partition is active. What it lacks is a confidence-aware fallback. If the index is uncertain, the system should not choose a partition merely because one classifier wins by a small margin; it should abstain, blend, or ask for evidence.
+
+## Connection to prior reading
+
+- **2026-09-25-self-organizing-fast-memory.md — Proroković (2026):** fast memory provides a writable adaptation carrier; StackNet provides the missing idea of an explicit task/provenance gate. Neither paper alone solves misrouted adaptation.
+- **2026-08-30-memory-anchors.md — “The Few Memories That Hold the Conflict”:** anchor replay protects high-risk overlap inside shared parameters; StackNet removes overlap through partitioning. This is a capacity-versus-rehearsal tradeoff, not two unrelated anti-forgetting tricks.
+- **2026-09-08-rehearsal-free-plasticity.md:** parameter stability does not guarantee behavioural stability, and plasticity needs a validity condition. StackNet enforces parameter stability for old partitions but assumes routing validity.
+- **2026-09-24-continual-personalization-self-evaluation.md — COPE:** both distribute adaptation across a stable core and task/user-specific state. StackNet makes the authority boundary structural; COPE raises the harder question of when a retrieved preference is entitled to override the core.
+- **2026-09-02-two-channel-memory.md:** item recall and relational recall should be measured separately. StackNet reports task accuracy and routing accuracy, but a stronger evaluation would test whether the model preserves relations across task boundaries rather than only labels within each partition.
+
+## Open question
+
+Can a continual learner learn a provenance gate that knows when it is not entitled to route an input into any existing memory partition? I would test a StackNet-like architecture on pairs of tasks with deliberately overlapping input distributions but conflicting labels, then introduce gradual drift and ambiguous mixtures. The gate should output not only a task index but a calibrated authorization decision: reuse partition A, reuse B, create/quarantine a new state, or abstain. The decisive metric would not be average accuracy; it would be the rate at which a wrong but confident route causes durable contamination of future predictions.
+
+Source: https://arxiv.org/abs/1809.02441
