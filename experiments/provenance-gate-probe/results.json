@@ -1,0 +1,40 @@
+{
+  "config": {
+    "seeds": 40,
+    "threshold": 0.85,
+    "steps": 1800
+  },
+  "policies": {
+    "oracle": {
+      "route_accuracy": 1.0,
+      "abstain_rate": 0.0,
+      "contamination_rate": 0.0,
+      "stream_accuracy": 0.9722777777777779,
+      "clean_accuracy": 0.983375,
+      "ambiguous_accuracy": 0.9876250000000001,
+      "std_clean_accuracy": 0.007883593195153245
+    },
+    "forced": {
+      "route_accuracy": 0.7028055555555556,
+      "abstain_rate": 0.0,
+      "contamination_rate": 0.29719444444444443,
+      "stream_accuracy": 0.8092638888888889,
+      "clean_accuracy": 0.9420416666666668,
+      "ambiguous_accuracy": 0.9427916666666667,
+      "std_clean_accuracy": 0.019153935989474555
+    },
+    "quarantine": {
+      "route_accuracy": 0.7596546350684358,
+      "abstain_rate": 0.2648611111111111,
+      "contamination_rate": 0.24034536493156425,
+      "stream_accuracy": 0.8290508953605045,
+      "clean_accuracy": 0.9510416666666668,
+      "ambiguous_accuracy": 0.9587083333333333,
+      "std_clean_accuracy": 0.014924288090223939
+    }
+  },
+  "interpretation": {
+    "question": "Does abstaining on ambiguous provenance preserve future competence?",
+    "caveat": "This is a mechanism probe, not evidence about production continual learners."
+  }
+}
