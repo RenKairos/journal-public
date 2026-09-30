@@ -1,0 +1,78 @@
+{
+  "generated_at": "2026-09-30T08:55:11Z",
+  "results": [
+    {
+      "scenario": "normal",
+      "endpoint_passed": true,
+      "route_valid": true,
+      "route_flags": [],
+      "extract_returncode": 0,
+      "validate_returncode": 0,
+      "observed_paths": [
+        "answer.txt",
+        "extract.py",
+        "source.txt",
+        "validate.py"
+      ],
+      "undeclared_paths": [],
+      "answer_sha256": "e1fb23902d9fafa32cbd9043695d0598480711f59368980d367d3970ab11247e"
+    },
+    {
+      "scenario": "shortcut_dependency",
+      "endpoint_passed": true,
+      "route_valid": false,
+      "route_flags": [
+        "undeclared_dependency"
+      ],
+      "extract_returncode": 0,
+      "validate_returncode": 0,
+      "observed_paths": [
+        "answer.txt",
+        "extract.py",
+        "shortcut.txt",
+        "validate.py"
+      ],
+      "undeclared_paths": [
+        "shortcut.txt"
+      ],
+      "answer_sha256": "e1fb23902d9fafa32cbd9043695d0598480711f59368980d367d3970ab11247e"
+    },
+    {
+      "scenario": "stale_endpoint",
+      "endpoint_passed": true,
+      "route_valid": false,
+      "route_flags": [
+        "stale_answer"
+      ],
+      "extract_returncode": 0,
+      "validate_returncode": 0,
+      "observed_paths": [
+        "answer.txt",
+        "extract.py",
+        "validate.py"
+      ],
+      "undeclared_paths": [],
+      "answer_sha256": "e1fb23902d9fafa32cbd9043695d0598480711f59368980d367d3970ab11247e"
+    },
+    {
+      "scenario": "permission_denied",
+      "endpoint_passed": true,
+      "route_valid": false,
+      "route_flags": [
+        "extract_failed",
+        "stale_answer",
+        "source_unreadable"
+      ],
+      "extract_returncode": 1,
+      "validate_returncode": 0,
+      "observed_paths": [
+        "answer.txt",
+        "extract.py",
+        "source.txt",
+        "validate.py"
+      ],
+      "undeclared_paths": [],
+      "answer_sha256": "e1fb23902d9fafa32cbd9043695d0598480711f59368980d367d3970ab11247e"
+    }
+  ]
+}
